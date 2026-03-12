@@ -1,0 +1,37 @@
+#ifndef PROPERTY_CONTROLLER_H
+#define PROPERTY_CONTROLLER_H
+
+#include "Property_Registry_Class.h"
+
+
+template <typename T>
+class property_controller { //linked list
+private: 
+	struct node {
+		node* previous;
+		node* next;
+		T data;
+
+		node(T value);
+	};
+	node* head;
+public:
+	
+	property_controller() : head(NULL) {} //linked list constructor
+	property_controller(const property_controller& other); // linked list copy constructor
+	~property_controller(); //linked list destructor
+	void store(T value); //insert to front of linked list
+	template <typename search>
+	T Retrieve(search data); // return object, searching for adress
+	template <typename Keyname>
+	void sort(Keyname key); // sort...
+	template <typename del>
+	void Delete(del data);// delete node at certain index
+	int count(); //number of nodese
+	bool empty();// bool for empty check
+	void clear(); //clear the linked list
+
+
+
+};
+#endif
