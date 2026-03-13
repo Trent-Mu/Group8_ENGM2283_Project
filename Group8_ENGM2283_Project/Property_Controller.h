@@ -25,7 +25,8 @@ public:
 	T Retrieve(search data); // return object, searching for adress
 	template <typename Compare>
 	void sort(Compare comp); // sort...
-	void Delete(string key);// delete node based on address?
+	template <typename del>
+	void Delete(del key);// delete node based on address?
 	int count(); //number of nodese
 	bool empty();// bool for empty check
 	void clear(); //clear the linked list
