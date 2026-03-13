@@ -69,20 +69,22 @@ T property_controller<T>::Retrieve(search key) {
 	if (empty()) {
 		throw invalid_argument("Database is empty"); //remember try and catch with invalid_argument object as the catch argument passed by reference
 	}
+
 	node* current = head;
+
 	while (current != NULL) {
-		if (data == key(current->data)) {
+		if (data == key(current->data)) { 
 			return current->data;
 		}
 		current = current->next;
 	}
-	throw invalid_argument("Data not found"); //remeber try and catch with invalid_arguement object as the catch arguement pass by reference
+	throw invalid_argument("Data not found"); //remember try and catch with invalid_arguement object as the catch arguement pass by reference
 }
 //_____________________________________________________________________________________________________________________________________________________________________________
 
 
 
-// LINKED LIST SORT
+// LINKED LIST SORT 
 
 template <typename T>
 template <typename Compare> // if template for the list is T then if we are sorting, objects we need a difference template for the sort parameter
@@ -98,12 +100,9 @@ void property_controller<T>::sort(Compare comp) {
 		T value = current->data; //list template value = current-> data
 		node* temp = current->previous;
 
-		while (temp != NULL && comp(value,temp->data)) { 
-			temp->next->data = temp->data; // so for the comp template function, we have to do lambda functino calls, so basically in the insertion sort while loop parameter, we say while temp ( previous of current ) is not NULL,( meaning we arent starting at top of head) , AND comp(value, temp->data), so if true runs NOWWWW next line
-			                               // basically we are gonna do a thing with the sort functions of the member functions where we can choose what to sort by and basically the way comp works is a lambda function where we write in the main for the sorts arugments we write [](const property&a, const property& b) { return a.get(whaterver) < b.get(whatever) } IMPORTANT make things that are actually comparable
-			temp = temp->previous;         // example for sort call, say we have some list called controller we would do controller.sort([](const property& a, const property& b){
-			                               //                                                                                  return (a.get_square_foot() < b.get_square_foot)};
-											// SAME THING FOR EVERY OTHER INSTANCE OF LAMBDA FUNCTION NEEDED
+		while (temp != NULL && comp(value,temp->data)) {  //lambda function required, 
+			temp->next->data = temp->data; 
+			temp = temp->previous;
 
 		}
 		if (temp == NULL) {
@@ -123,8 +122,7 @@ void property_controller<T>::sort(Compare comp) {
 // LINKED LIST SEARCH DELETE
 
 template <typename T>
-template <typename del>
-void property_controller<T>::Delete(del key) {
+void property_controller<T>::Delete(string key) {
 	if (empty()) return;
 	
 	node* current = head;
@@ -132,7 +130,7 @@ void property_controller<T>::Delete(del key) {
 	while (current != NULL) {
 		
 		
-		if (data == key(current->data)) { //need to find way to either member call with template or just do normal lookup 
+		if (key == current->data.get_address()) { 
 
 			node* nextNode = current->next;
 		
