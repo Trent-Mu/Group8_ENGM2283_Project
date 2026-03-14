@@ -17,7 +17,7 @@ private:
 	node* head;
 public:
 	
-	property_controller() : head(NULL) {} //linked list constructor
+	property_controller() : head(nullptr) {} //linked list constructor
 	property_controller(const property_controller& other); // linked list copy constructor
 	~property_controller(); //linked list destructor
 	property_controller<T>& operator=(const property_controller& other);
