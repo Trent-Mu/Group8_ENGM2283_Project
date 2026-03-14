@@ -13,6 +13,8 @@ private:
 	int year_built;
 public:
 	date(int bought = 0, int built = 0);
+	bool isNewHouse();                           // new = built past 2020
+	void display(ostream& out);
 };
 
 class owner {
@@ -22,6 +24,8 @@ private:
 	string email;
 public:
 	owner(string n = " ", int id = 0, string em = " ");
+	bool isValidEmail();
+	void display(ostream& out);
 };
 
 //////////////////////////////////////////////////////////
@@ -46,6 +50,7 @@ public:
 	string get_address() const;
 	float get_market_price() const;
 	virtual void display(ostream& out) const;
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr);
 };
 
 /////////////////////////////////////////////////////////
