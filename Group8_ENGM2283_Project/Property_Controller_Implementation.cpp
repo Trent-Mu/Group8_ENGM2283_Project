@@ -188,12 +188,6 @@ void property_controller<T>::Delete(del key) {
 			if (current->next != nullptr) {
 				current->next->previous = current->previous;
 			}
-			else {
-				head = current->next;
-				if (head != nullptr) {
-					head->previous = nullptr;
-				}
-			}
 			delete current;
 			current = nextNode;
 		}
