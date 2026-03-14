@@ -24,7 +24,7 @@ public:
 	void store(const T& value); //insert to front of linked list
 	void append(const T& value); //insert to back of linked list
 	template <typename search>
-	const T& Retrieve(search data); // return object, searching for adress
+	const T& Retrieve(search data) const; // return object, searching for adress
 	template <typename Compare>
 	void sort(Compare comp); // sort...
 	template <typename del>
