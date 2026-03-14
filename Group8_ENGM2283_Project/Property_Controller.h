@@ -22,7 +22,7 @@ public:
 	~property_controller(); //linked list destructor
 	void store(T value); //insert to front of linked list
 	template <typename search>
-	T Retrieve(search data); // return object, searching for adress
+	const T& Retrieve(search data); // return object, searching for adress
 	template <typename Compare>
 	void sort(Compare comp); // sort...
 	template <typename del>

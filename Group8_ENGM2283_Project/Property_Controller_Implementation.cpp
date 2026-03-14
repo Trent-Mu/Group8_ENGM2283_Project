@@ -65,7 +65,7 @@ void property_controller<T>::store(T value) {
 
 template <typename T>
 template <typename search>
-T property_controller<T>::Retrieve(search key) { //we can have filters if we choose
+const T& property_controller<T>::Retrieve(search key) { //we can have filters if we choose
 	if (empty()) {
 		throw invalid_argument("Database is empty"); //remember try and catch with invalid_argument object as the catch argument passed by reference
 	}
