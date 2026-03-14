@@ -3,7 +3,7 @@
 // NODE CONSTRUCTOR
 
 template <typename T>
-property_controller<T>::node::node(T value) {
+property_controller<T>::node::node(const T& value) {
 	data = value;
 	next = nullptr;
 	previous = nullptr;
@@ -61,7 +61,7 @@ property_controller<T>& property_controller<T>::operator=(const property_control
 // LINKED LIST INSERTION
 
 template <typename T>
-void property_controller<T>::store(T value) {
+void property_controller<T>::store(const T& value) {
 	
 	node* newNode = new node(value);
 	//empty list case
@@ -81,7 +81,7 @@ void property_controller<T>::store(T value) {
 // LINKED LIST APPEND
 
 template <typename T>
-void property_controller<T>::append(T value) {
+void property_controller<T>::append(const T& value) {
 	
 	node* newNode = new node(value);
 
