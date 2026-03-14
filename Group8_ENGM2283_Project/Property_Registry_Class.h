@@ -2,6 +2,7 @@
 #define PROPERTY_REGISTRY_CLASS_H
 
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 

@@ -121,7 +121,7 @@ const T& property_controller<T>::Retrieve(search key) const { //we can have filt
 		}
 		current = current->next;
 	}
-	throw invalid_argument("Data not found"); //remember try and catch with invalid_arguement object as the catch arguement pass by reference
+	throw runtime_error("Data not found"); //remember try and catch with invalid_arguement object as the catch arguement pass by reference
 }
 //_____________________________________________________________________________________________________________________________________________________________________________
 
@@ -187,6 +187,12 @@ void property_controller<T>::Delete(del key) {
 			}
 			if (current->next != nullptr) {
 				current->next->previous = current->previous;
+			}
+			else {
+				head = current->next;
+				if (head != nullptr) {
+					head->previous = nullptr;
+				}
 			}
 			delete current;
 			current = nextNode;
