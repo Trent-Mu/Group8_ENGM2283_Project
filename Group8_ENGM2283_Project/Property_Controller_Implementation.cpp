@@ -73,7 +73,7 @@ T property_controller<T>::Retrieve(search key) { //we can have filters if we cho
 	node* current = head;
 
 	while (current != NULL) {
-		if (key(current->data)) { //lambda bool function
+		if (key(current->data)) { //lambda bool function 
 			return current->data;
 		}
 		current = current->next;
@@ -205,4 +205,3 @@ void property_controller<T>::clear() {
 	head = NULL;
 }
 //____________________________________________________________________________________________________________________________________________________________________________________________
-
