@@ -49,7 +49,7 @@ property_controller<T>& property_controller<T>::operator=(const property_control
 	node* current = other.head;
 
 	while (current != nullptr) {
-		store(current->data);
+		append(current->data);
 		current = current->next;
 	}
 
