@@ -26,7 +26,6 @@ property_controller<T>::property_controller(const property_controller& other) {
 		current = current->next;
 	}
 }
-
 //__________________________________________________________________________________________________________________________________________________________________________
 
 
@@ -56,6 +55,9 @@ property_controller<T>& property_controller<T>::operator=(const property_control
 
 	return *this;
 }
+//__________________________________________________________________________________________________________________________
+
+
 // LINKED LIST INSERTION
 
 template <typename T>
@@ -73,6 +75,32 @@ void property_controller<T>::store(T value) {
 	head = newNode;
 }
 //___________________________________________________________________________________________________________________________________________________________________________
+
+
+
+// LINKED LIST APPEND
+
+template <typename T>
+void property_controller<T>::append(T value) {
+	
+	node* newNode = new node(value);
+
+	if (empty()) {
+		head = newNode;
+		return;
+	}
+
+	node* current = head;
+
+	while (current->next != nullptr) {
+		current = current->next;
+	}
+
+	current->next = newNode;
+	newNode->previous = current;
+}
+//____________________________________________________________________________________________________________________________________________________________________________
+
 
 
 

@@ -22,6 +22,7 @@ public:
 	~property_controller(); //linked list destructor
 	property_controller<T>& operator=(const property_controller& other);
 	void store(T value); //insert to front of linked list
+	void append(T value); //insert to back of linked list
 	template <typename search>
 	const T& Retrieve(search data); // return object, searching for adress
 	template <typename Compare>
