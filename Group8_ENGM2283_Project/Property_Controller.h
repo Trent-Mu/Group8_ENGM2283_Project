@@ -12,23 +12,25 @@ private:
 		node* next;
 		T data;
 
-		node(T value);
+		node(const T& value);
 	};
 	node* head;
 public:
 	
-	property_controller() : head(NULL) {} //linked list constructor
+	property_controller() : head(nullptr) {} //linked list constructor
 	property_controller(const property_controller& other); // linked list copy constructor
 	~property_controller(); //linked list destructor
-	void store(T value); //insert to front of linked list
+	property_controller<T>& operator=(const property_controller& other);
+	void store(const T& value); //insert to front of linked list
+	void append(const T& value); //insert to back of linked list
 	template <typename search>
-	T Retrieve(search data); // return object, searching for adress
+	const T& Retrieve(search data) const; // return object, searching for adress
 	template <typename Compare>
 	void sort(Compare comp); // sort...
 	template <typename del>
 	void Delete(del key);// delete node based on address?
-	int count(); //number of nodese
-	bool empty();// bool for empty check
+	int count() const; //number of nodese
+	bool empty() const;// bool for empty check
 	void clear(); //clear the linked list
 
 
