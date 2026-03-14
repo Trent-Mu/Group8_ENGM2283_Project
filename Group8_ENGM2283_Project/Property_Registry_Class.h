@@ -44,7 +44,8 @@ public:
 	property(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0);
 	float get_square_feet() const;
 	string get_address() const;
-	virtual void display() const;
+	float get_market_price() const;
+	virtual void display(ostream& out) const;
 };
 
 /////////////////////////////////////////////////////////
@@ -60,14 +61,14 @@ private:
 	int bedroom_count;
 public:
 	residental(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, int bdc = 0);
-	void display();
+	void display(ostream& out);
 };
 class commercial : public property {
 private:
 	string business_type;
 public:
 	commercial(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, string btype = " ");
-	void display();
+	void display(ostream& out);
 };
 
 //////////////////////////////////////////////////////////

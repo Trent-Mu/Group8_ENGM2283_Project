@@ -14,7 +14,7 @@ commercial::commercial(string n, int id, string em, int bought, int built, strin
 //_____________________________________________________________________________________________________________________________________________________________________________________________
 
 
-// METHOD IMPLEMENTATION
+// METHOD IMPLEMENTATION for BASE(property) class
 
 float property::get_square_feet() const {
 	return square_feet;
@@ -23,5 +23,28 @@ float property::get_square_feet() const {
 string property::get_address() const {
 	return address;
 }
+
+void property::display(ostream& out) const {
+
+}
+
 //_____________________________________________________________________________________________________________________________________________________________________________________________
+
+// METHOD IMPLEMENTATION for DERVIVED(residental) class
+
+void residental::display(ostream& out) {
+
+}
+
+
+//_____________________________________________________________________________________________________________________________________________________________________________________________
+
+// METHOD IMPLEMENTATION for DERVIVED(residential) class
+
+void residental::display(ostream& out) {
+
+}
+
+//_____________________________________________________________________________________________________________________________________________________________________________________________
+
 
