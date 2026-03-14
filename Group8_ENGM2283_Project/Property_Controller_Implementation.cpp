@@ -161,7 +161,7 @@ void property_controller<T>::Delete(del key) {
 // LINKED LIST COUNT
 
 template <typename T>
-int property_controller<T>::count() {
+int property_controller<T>::count() const {
 	if (empty()) return 0;
 
 	node* current = head;
@@ -181,7 +181,7 @@ int property_controller<T>::count() {
 // LINKED LIST EMPTY CHECK
 
 template <typename T>
-bool property_controller<T>::empty() {
+bool property_controller<T>::empty() const{
 	return(head == nullptr);
 }
 //______________________________________________________________________________________________________________________________________________________________________________

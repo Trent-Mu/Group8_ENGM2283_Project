@@ -27,8 +27,8 @@ public:
 	void sort(Compare comp); // sort...
 	template <typename del>
 	void Delete(del key);// delete node based on address?
-	int count(); //number of nodese
-	bool empty();// bool for empty check
+	int count() const; //number of nodese
+	bool empty() const;// bool for empty check
 	void clear(); //clear the linked list
 
 
