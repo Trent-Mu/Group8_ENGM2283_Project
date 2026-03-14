@@ -40,7 +40,22 @@ property_controller<T>::~property_controller() {
 //____________________________________________________________________________________________________________________________________________________________________________
 
 
+// LINKED LIST COPY ASSIGNMENT OPERATOR
+template <typename T>
+property_controller<T>& property_controller<T>::operator=(const property_controller& other) {
+	if (this == &other) return *this;
 
+	clear();
+
+	node* current = other.head;
+
+	while (current != nullptr) {
+		store(current->data);
+		current = current->next;
+	}
+
+	return *this;
+}
 // LINKED LIST INSERTION
 
 template <typename T>
