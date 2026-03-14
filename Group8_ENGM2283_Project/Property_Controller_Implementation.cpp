@@ -5,8 +5,8 @@
 template <typename T>
 property_controller<T>::node::node(T value) {
 	data = value;
-	next = NULL;
-	previous = NULL;
+	next = nullptr;
+	previous = nullptr;
 }
 //___________________________________________________________________________________________________________________________________________________________________________
 
@@ -17,11 +17,11 @@ property_controller<T>::node::node(T value) {
 template <typename T>
 property_controller<T>::property_controller(const property_controller& other) {
 
-	head == NULL;
+	head = nullptr;
 
 	node* current = other.head;
 
-	while (current != NULL) {
+	while (current != nullptr) {
 		store(current->data);
 		current = current->next;
 	}
@@ -72,7 +72,7 @@ T property_controller<T>::Retrieve(search key) { //we can have filters if we cho
 
 	node* current = head;
 
-	while (current != NULL) {
+	while (current != nullptr) {
 		if (key(current->data)) { //lambda bool function 
 			return current->data;
 		}
@@ -90,22 +90,22 @@ template <typename T>
 template <typename Compare> // if template for the list is T then if we are sorting, objects we need a difference template for the sort parameter
 void property_controller<T>::sort(Compare comp) { 
 
-	if (empty() || head->next == NULL) return;
+	if (empty() || head->next == nullptr) return;
 
 	node* current = head->next;
 
 
-	while (current != NULL) {
+	while (current != nullptr) {
 		
 		T value = current->data; //list template value = current-> data
 		node* temp = current->previous;
 
-		while (temp != NULL && comp(value,temp->data)) {  //lambda function required, 
+		while (temp != nullptr && comp(value,temp->data)) {  //lambda function required, 
 			temp->next->data = temp->data; 
 			temp = temp->previous;
 
 		}
-		if (temp == NULL) {
+		if (temp == nullptr) {
 			head->data = value;
 		}
 		else {
@@ -128,21 +128,21 @@ void property_controller<T>::Delete(del key) {
 	
 	node* current = head;
 
-	while (current != NULL) {
+	while (current != nullptr) {
 		
 		
 		if (key(current->data)) { 
 
 			node* nextNode = current->next;
 		
-			if (current->previous != NULL) {
+			if (current->previous != nullptr) {
 				current->previous->next = current->next;
 			}
 			
 			else {
 				head = current->next;	
 			}
-			if (current->next != NULL) {
+			if (current->next != nullptr) {
 				current->next->previous = current->previous;
 			}
 			delete current;
@@ -167,7 +167,7 @@ int property_controller<T>::count() {
 	node* current = head;
 	int count = 0;
 
-	while (current!= NULL) {
+	while (current!= nullptr) {
 		count++;
 		current = current->next;
 	}
@@ -182,7 +182,7 @@ int property_controller<T>::count() {
 
 template <typename T>
 bool property_controller<T>::empty() {
-	return(head == NULL);
+	return(head == nullptr);
 }
 //______________________________________________________________________________________________________________________________________________________________________________
 
@@ -196,12 +196,12 @@ void property_controller<T>::clear() {
 
 	node* current = head;
 
-	while (current != NULL) {
+	while (current != nullptr) {
 		node* temp = current;
 		current = current->next;
 		delete temp;
 	}
 
-	head = NULL;
+	head = nullptr;
 }
 //____________________________________________________________________________________________________________________________________________________________________________________________
