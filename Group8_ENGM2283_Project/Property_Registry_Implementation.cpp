@@ -1,4 +1,5 @@
 #include "Property_Registry_Class.h"
+#include "Property_Controller.h"
 
 // CONSTRUCTOR IMPLEMENTATION
 
@@ -25,3 +26,59 @@ string property::get_address() const {
 }
 //_____________________________________________________________________________________________________________________________________________________________________________________________
 
+
+
+
+
+
+
+
+
+
+
+
+// HELPER FUNCTIONS
+
+template <typename T>
+void retrieve(const property_controller<T>& list, auto search, string choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
+
+																//call retrieve in here with lambda function call, having search in the scope 
+			
+																//lambda function call is ([search]( const property& p) { return search == p.get_(choice)()});
+					
+																//make sure that the correct getter is used according to choice
+												
+																//alternatively replace choice with and enum and do switch case statments, thats way cooler 
+												
+
+}
+
+template <typename T>
+void sort(property_controller<T>, string choice) { //can sort by market price, or by square feet
+																		
+																//call sort in here with lambda function call as the parameter
+
+																//lambda function call is ([](const property& a, const property& b) { return a.get_(choice)() < b.get_(choice)() });
+
+																//make sure that the correct getter is used according to choice
+
+																//alternatively replace choice with and enum and do switch case statments, thats way cooler 
+
+}
+
+template <typename T>
+void remove(property_controller<T>, auto del, string choice) { // delete element by address, owner name, owner id, or email
+
+																//call delete in here with lambda function call as the parameter
+
+}																//lmabda function call is ([del](property& p){ return del==p.get_(choice)()});
+
+																// make sure that the correct getter is used according to choice
+
+																//alternatively replace choice with and enum and do switch case statments, thats way cooler 
+
+
+
+
+
+//Honestly after these we are mostly done 
