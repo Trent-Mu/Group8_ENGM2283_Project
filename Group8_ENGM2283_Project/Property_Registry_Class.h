@@ -27,6 +27,9 @@ public:
 	owner(string n = " ", int id = 0, string em = " ");
 	bool isValidEmail() const;
 	void owner_display() const;
+	string get_name() const;
+	string get_email() const;
+	int get_taxid() const;
 };
 
 //////////////////////////////////////////////////////////

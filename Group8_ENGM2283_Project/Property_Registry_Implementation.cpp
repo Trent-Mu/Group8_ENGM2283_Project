@@ -62,6 +62,16 @@ void owner::owner_display() const {
 	cout << "Email: " << email;
 }
 
+string owner::get_name() const {
+	return name;
+}
+string owner::get_email() const {
+	return email;
+}
+int owner::get_taxid() const {
+	return tax_id;
+}
+
 // METHOD IMPLEMENTATION for BASE(property) class
 
 
@@ -113,12 +123,39 @@ void commercial::display() const {
 // HELPER FUNCTIONS
 
 template <typename T>
-void retrieve(const property_controller<T>& list, auto search, string choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
+void retrieve(const property_controller<T>& list, auto search, char choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
+	
+	try {
+		if (choice == 'a') {
+			(list.Retrieve([search](const T & a) {
+				return search == a.get_address();
+			})).display();
+		}
+		//call retrieve in here with lambda function call, having search in the scope 
+		else if (choice == 'n') {
+			(list.Retrieve([search](const T & a) {
+				return search == a.get_name();
+			})).display();
+		}
+		else if (choice == 'i') {
+			(list.Retrieve([search](const T & a) {
+				return search == a.get_taxid();
+			})).display();
+		}
+		else if (choice == 'e') {
+			(list.Retrieve([search](const T & a) {
+				return search == a.get_email();
+			})).display();
+		}
+		else {
+			throw invalid_argument("Wrong charachter! (Try n - name search, i - tax id search or e - email search");
+		}
+	}
+	catch(const exception& e){
 
-																//call retrieve in here with lambda function call, having search in the scope 
-			
-																//lambda function call is ([search]( const property& p) { return search == p.get_(choice)()});
-					
+		cout << "Search Error: " << e.what() << endl;
+																	//lambda function call is ([search]( const property& p) { return search == p.get_(choice)()});
+	}
 																//make sure that the correct getter is used according to choice
 												
 																//alternatively replace choice with and enum and do switch case statments, thats way cooler 
@@ -127,23 +164,64 @@ void retrieve(const property_controller<T>& list, auto search, string choice) { 
 }
 
 template <typename T>
-void sort(property_controller<T>, string choice) { //can sort by market price, or by square feet
-																		
+void sort(property_controller<T>& list, char choice) { //can sort by market price, or by square feet
+															
+	try {
+		if (choice == 'p') {
+			list.perform_sort([](const T& a, const T& b) {
+				return a.get_market_price() < b.get_market_price();
+				});
+			cout << "Sorted by Market Price." << endl;
+		}
+		else if (choice == 's') {
+			list.perform_sort([](const T& a, const T& b) {
+				return a.get_square_feet() < b.get_square_feet();
+				});
+			cout << "Sorted by Square Footage." << endl;
+		}
+		else {
+			throw invalid_argument("Wrong charachter! (p - price sort, s - square footage sort)");
+		}
+
+	}
+	catch (const exception& e) {
+		cout << "Sort Error: " << e.what() << endl;
+	}
 																//call sort in here with lambda function call as the parameter
 
 																//lambda function call is ([](const property& a, const property& b) { return a.get_(choice)() < b.get_(choice)() });
-
-																//make sure that the correct getter is used according to choice
-
+																// 
+																// 																//make sure that the correct getter is used according to choice
 																//alternatively replace choice with and enum and do switch case statments, thats way cooler 
 
 }
 
 template <typename T>
-void remove(property_controller<T>, auto del, string choice) { // delete element by address, owner name, owner id, or email
+void remove(property_controller<T>& list, auto del, char choice) { // delete element by address, owner name, owner id, or email
 
-																//call delete in here with lambda function call as the parameter
-
+	try {
+		if (choice == 'a') {
+			list.Delete([del](const T& p) {
+				return p.get_adress() == del; });
+		} else if (choice == 'n') {
+			list.Delete([del](const T& p) {
+				return p.get_name() == del; });
+		}
+		else if (choice == 'i') {
+			list.Delete([del](const T& p) {
+				return p.get_taxid() == del; });
+		}
+		else if (choice == 'e') {
+			list.Delete([del](const T& p) {
+				return p.get_email() == del; });
+		}
+		else {
+			throw invalid_argument("Wrong charachter!(Try n - name search, i - tax id search or e - email search");
+		}	
+	}
+	catch (const exception& e) {
+		cout << "Remove Error: " << e.what() << endl;
+	}														//call delete in here with lambda function call as the paramete
 }																//lmabda function call is ([del](property& p){ return del==p.get_(choice)()});
 
 																// make sure that the correct getter is used according to choice
