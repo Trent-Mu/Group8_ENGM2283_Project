@@ -14,6 +14,8 @@ private:
 	int year_built;
 public:
 	date(int bought = 0, int built = 0);
+	bool isNewHouse();
+	void display() const;
 };
 
 class owner {
@@ -23,6 +25,8 @@ private:
 	string email;
 public:
 	owner(string n = " ", int id = 0, string em = " ");
+	bool isValidEmail();
+	void display() const;
 };
 
 //////////////////////////////////////////////////////////
@@ -46,6 +50,7 @@ public:
 	float get_square_feet() const;
 	string get_address() const;
 	virtual void display() const;
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr)
 };
 
 /////////////////////////////////////////////////////////
@@ -56,19 +61,21 @@ public:
 
 /////////////////////// Child Classes ///////////////////
 
-class residental : public property {
+class residential : public property {
 private:
 	int bedroom_count;
 public:
-	residental(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, int bdc = 0);
-	void display();
+	residential(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, int bdc = 0);
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, int bdc);
+	void display() const;
 };
 class commercial : public property {
 private:
 	string business_type;
 public:
 	commercial(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, string btype = " ");
-	void display();
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, string btype);
+	void display() const;
 };
 
 //////////////////////////////////////////////////////////
