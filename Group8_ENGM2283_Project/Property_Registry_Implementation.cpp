@@ -14,8 +14,32 @@ residential::residential(string n, int id, string em, int bought, int built, str
 commercial::commercial(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, string btype) : property(n, id, em, bought, built, adr, sqft, mpr), business_type(btype) {}
 //_____________________________________________________________________________________________________________________________________________________________________________________________
 
+// METHOD IMPLEMENTATION FOR COMPOSITION CLASSES date and owner
 
-// METHOD IMPLEMENTATION
+bool date::isNewHouse() {// new = built past 2020
+	return year_built > 2020;
+}
+void date::display(ostream& out) {
+	out << "Year built: " << year_built << endl;
+	out << "Year bought: " << date_bought << endl;
+
+	if (isNewHouse()) {
+		out << "New House!";
+	}
+}
+
+
+bool owner::isValidEmail() {
+	return email > 2000;           // ?????????????????????????? How do we check if the email is valid ??????????????????????
+
+}
+void owner::display(ostream& out) {
+	out << "Owner name: " << name;
+	out << "Tax ID: " << tax_id;
+	out << "Email: " << email;
+}
+
+// METHOD IMPLEMENTATION for BASE(property) class
 
 
 // BASE CLASS METHOD IMPLEMENTATION

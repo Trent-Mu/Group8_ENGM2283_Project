@@ -14,6 +14,7 @@ private:
 	int year_built;
 public:
 	date(int bought = 0, int built = 0);
+	bool isNewHouse();                           // new = built past 2020
 	bool isNewHouse();
 	void display() const;
 };
