@@ -32,7 +32,7 @@ public:
 	int count() const; //number of nodese
 	bool empty() const;// bool for empty check
 	void clear(); //clear the linked list
-
+	void print() const;
 
 
 };
