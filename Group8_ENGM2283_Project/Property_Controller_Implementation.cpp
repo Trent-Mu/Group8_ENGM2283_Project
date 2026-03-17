@@ -248,3 +248,19 @@ void property_controller<T>::clear() {
 	head = nullptr;
 }
 //____________________________________________________________________________________________________________________________________________________________________________________________
+
+// LINKED LIST PRINT
+
+template <typename T>
+void property_controller<T>::print() const {
+	if (empty()) return;
+
+	node* current = head;
+
+	while (current != nullptr) {
+
+		current->data.display();
+		cout << endll;
+		current = current->next;
+	}
+}
