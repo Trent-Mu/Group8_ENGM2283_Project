@@ -16,27 +16,50 @@ commercial::commercial(string n, int id, string em, int bought, int built, strin
 
 // METHOD IMPLEMENTATION FOR COMPOSITION CLASSES date and owner
 
-bool date::isNewHouse() {// new = built past 2020
+bool date::isNewHouse() const {// new = built past 2020
 	return year_built > 2020;
 }
-void date::display(ostream& out) {
-	out << "Year built: " << year_built << endl;
-	out << "Year bought: " << date_bought << endl;
+void date::date_display() const {
+	cout << "Year built: " << year_built << endl;
+	cout << "Year bought: " << date_bought << endl;
 
 	if (isNewHouse()) {
-		out << "New House!";
+		cout << "New House!";
 	}
 }
 
-
-bool owner::isValidEmail() {
-	return email > 2000;           // ?????????????????????????? How do we check if the email is valid ??????????????????????
-
+// Helper functions for is valid email
+static bool is_char(char c) {
+	return((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
-void owner::display(ostream& out) {
-	out << "Owner name: " << name;
-	out << "Tax ID: " << tax_id;
-	out << "Email: " << email;
+
+
+bool owner::isValidEmail() const {
+	if (!is_char(email[0])) return false;
+	int At = -1;
+	int dot = -1;
+
+
+	for (int i = 0; i < email.length(); i++) {
+		if (email[i] == '@') {
+			At = i;
+		}
+		else if (email[i] == '.'){
+			dot = i;
+		}
+	}
+	if (At == -1 || dot == -1) {
+		return false;
+	}
+	if (At > dot) {
+		return false;
+	}
+	return !(dot >= (email.length() - 1));
+}
+void owner::owner_display() const {
+	cout << "Owner name: " << name;
+	cout << "Tax ID: " << tax_id;
+	cout << "Email: " << email;
 }
 
 // METHOD IMPLEMENTATION for BASE(property) class
@@ -51,17 +74,9 @@ string property::get_address() const {
 	return address;
 }
 
-void property::create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr){
-	guy = owner(n, id, em);
-	info = date(bought, built);
-	address = adr;
-	square_feet = sqft;
-	market_price = mpr;
-}
-
 void property::display() const {
-	guy.display();
-	info.display();
+	guy.owner_display();
+	info.date_display();
 	cout << "Address: " << address << endl;
 	cout << "Square Footage : " << square_feet << " sq ft" << endl;
 	cout << "Market Price: $" << market_price << endl;
@@ -69,20 +84,10 @@ void property::display() const {
 
 // CHILD CLASS METHOD IMPLEMENTATION
 
-void residential::create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, int bdc) {
-	property::create_property(n, id, em, bought, built, adr, sqft, mpr);
-	bedroom_count = bdc;
-}
-
 void residential::display() const {
 	cout << "Residential Property: " << endl;
 	property::display();
 	cout << "Bedrooms: " << bedroom_count << endl;
-}
-
-void commercial::create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, string btype) {
-	property::create_property(n, id, em, bought, built, adr, sqft, mpr);
-	business_type = btype;
 }
 
 void commercial::display() const {
