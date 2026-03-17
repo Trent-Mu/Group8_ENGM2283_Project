@@ -2,6 +2,7 @@
 #define PROPERTY_REGISTRY_CLASS_H
 
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -14,7 +15,8 @@ private:
 public:
 	date(int bought = 0, int built = 0);
 	bool isNewHouse();                           // new = built past 2020
-	void display(ostream& out);
+	bool isNewHouse();
+	void display() const;
 };
 
 class owner {
@@ -25,7 +27,7 @@ private:
 public:
 	owner(string n = " ", int id = 0, string em = " ");
 	bool isValidEmail();
-	void display(ostream& out);
+	void display() const;
 };
 
 //////////////////////////////////////////////////////////
@@ -48,9 +50,8 @@ public:
 	property(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0);
 	float get_square_feet() const;
 	string get_address() const;
-	float get_market_price() const;
-	virtual void display(ostream& out) const;
-	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr);
+	virtual void display() const;
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr)
 };
 
 /////////////////////////////////////////////////////////
@@ -61,19 +62,21 @@ public:
 
 /////////////////////// Child Classes ///////////////////
 
-class residental : public property {
+class residential : public property {
 private:
 	int bedroom_count;
 public:
-	residental(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, int bdc = 0);
-	void display(ostream& out);
+	residential(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, int bdc = 0);
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, int bdc);
+	void display() const;
 };
 class commercial : public property {
 private:
 	string business_type;
 public:
 	commercial(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0, string btype = " ");
-	void display(ostream& out);
+	void create_property(string n, int id, string em, int bought, int built, string adr, float sqft, float mpr, string btype);
+	void display() const;
 };
 
 //////////////////////////////////////////////////////////
