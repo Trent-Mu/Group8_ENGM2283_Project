@@ -112,7 +112,7 @@ const T& property_controller<T>::Retrieve(search key) const { //we can have filt
 	if (empty()) {
 		throw invalid_argument("Database is empty"); //remember try and catch with invalid_argument object as the catch argument passed by reference
 	}
-
+	
 	node* current = head;
 
 	while (current != nullptr) {
