@@ -67,11 +67,11 @@ void property_controller<T>::store(const T& value) {
 	//empty list case
 	if (empty()) {
 		head = newNode;
-		return;
+		return;                // does this have to be here or between line 74 and 75
 	}
 	
 	newNode->next = head;
-	head->previous = newNode;
+	head->previous = newNode; // newNode->previous = nullptr
 	head = newNode;
 }
 //___________________________________________________________________________________________________________________________________________________________________________
