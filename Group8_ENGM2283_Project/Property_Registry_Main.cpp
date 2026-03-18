@@ -1,14 +1,17 @@
 #include "Property_Controller.h"
 #include "Property_Registry_Class.h"
 
+
 int main(void) {
 
+
 	char choice;
+
+	property_controller<property*> list;
 
 	cout << "Property Registry Database:" << endl;
 	cout << "Enter A to add new property" << endl;//easy
 	cout << "Enter R to retrieve property by: " << endl;// im curious about how to search through, what is the search condition?
-	
 	cout << "Enter S to sort properties by: " << endl; //we just need to choose a sort condition
 	cout << "Enter D to delete property" << endl; //we can choose to delete a certain property, delete first or delete last -- depends on search condition, or not who knows 
 	cout << "Enter C to check number of properties" << endl; //already done
@@ -16,7 +19,7 @@ int main(void) {
 	cout << "Enter C to clear database" << endl; // already done
 
 	// to test the classes as asked for class implementation deadline
-	
+	/*
 	property_controller<property*> list;
 
 	residential r1("Jane Doe", 123456789, "janedoe@gmail.com", 2015, 2000, " 1035 Spring Garden", 2000.5, 3000000.00, 3);
@@ -27,63 +30,96 @@ int main(void) {
 
 	cout << "Property inventory test" << endl;
 	list.print();		// printing the whole database
-
+	*/
 	////////////// end of asked material for class implementation testing
 
 	
-
+	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
 	while (1) {
-
-		cout << "Input (X to quit): ";
-
+		cout << endl;
+		cout << "Input (Q to quit): ";
 		cin >> choice;
 
-		if (choice == 'X') {
+		cout << endl;
+
+		if (choice == 'Q'||choice == 'q') {
 			cout << "Exited Successfully";
 			break;
 		}
+		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
 		else if (choice == 'A') {
-			string tname, temail, tadress, tbusiness;
-			int ttaxid, tbought, tbuilt, tbedc;
-			float tsqrfeet, tmarketv;
-			char tchoice;
+			while (true){
+				string name, email, address, business;
+				int taxid, bought, built, bedc;
+				float sqrfeet, marketv;
+				cout << "Enter the type of property (commercial = c, residential = r) (x to quit): ";
+				cin >> choice;
+				cout << endl;
+				if (choice == 'x' || choice == 'X') break;
 
-			cout << "Input the information for the  property you are trying to add in the following order:" << endl;
-			cout << "Name of owner, taxID, email, year bought, year built, adress, square feet, market value" << endl;
-			cin >> tname >> ttaxid >> temail >> tbought >> tbuilt >> tadress >> tsqrfeet >> tmarketv;
+				cout << "Input the information for the  property you are trying to add in the following order:" << endl;
+				cout << "Name of owner, taxID, email, year bought, year built, adress, square feet, market value" << endl;
+				cin >> name >> taxid >> email >> bought >> built >> address >> sqrfeet >> marketv;
+				cout << endl;
 
-			cout << "Evter the type of property (commercial = c, residential = r): ";
-			cin >> tchoice;
 
-			if (choice == 'c') {
-				cout << "Enter busess type: ";
-				cin >> tbusiness;
-				commercial c(tname, ttaxid, temail, tbought, tbuilt, tadress, tsqrfeet, tmarketv, tbusiness);
-				list.store(&c);
+				if (choice == 'c') {
+					cout << "Enter business type: ";
+					cin >> business;
+					commercial c(name, taxid, email, bought, built, address, sqrfeet, marketv, business);
+					list.store(&c);
+					cout << endl;
+				}
+				if (choice == 'r') {
+					cout << "Enter the number of bedrooms: ";
+					cin >> bedc;
+					residential r(name, taxid, email, bought, built, address, sqrfeet, marketv, bedc);
+					list.store(&r);
+					cout << endl;
+				}
 			}
-			if (choice == 'r') {
-				cout << "Enter the number of bedrooms: ";
-				cin >> tbedc;
-				residential r(tname, ttaxid, temail, tbought, tbuilt, tadress, tsqrfeet, tmarketv, tbedc);
-				list.store(&r);
-			}
-
 		}
+		//for this i want someone to prompt user for what they are searching for 'a' for address 'n' for owner name 'i' for owner id 'e' for email
+		//then prompt based on a n i e what thing they are searching for, for exmaple if they put in a, then prompt them for the exact address
+		// then call Retrieeve function
 		else if (choice == 'R') {
+			while (true) {
 
+
+
+				if (choice == 'x' || choice == 'X') break;
+
+
+			}
 		}
+		//prompt user to search by m - market price, or s - square feet, then call sort functions
 		else if (choice == 'S') {
+			
 
+			
 		}
+		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
 		else if (choice == 'D') {
+			while (true) {
+				
+				
+				
+				if (choice == 'x' || choice == 'X') break;
 
-		}
-		else if (choice == 'C') {
 
+
+
+			}
 		}
+		//count function, pretty clear what to do
+		else if (choice == 'N') {
+			
+		}
+		//empty function, just checks if the database is empty, pretty clear what to do
 		else if (choice == 'E') {
 
 		}
+		//clears the database, pretty clear what to do
 		else if (choice == 'C') {
 
 		}
@@ -93,3 +129,5 @@ int main(void) {
 
 	return 0;
 }
+
+// once we are done everything we are gonna remove all the weird comments and comment everything "professionally"
