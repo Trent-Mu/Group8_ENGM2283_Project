@@ -131,7 +131,6 @@
     <ClInclude Include="Property_Registry_Class.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Property_Controller_Implementation.cpp" />
     <ClCompile Include="Property_Registry_Implementation.cpp" />
     <ClCompile Include="Property_Registry_Main.cpp" />
   </ItemGroup>

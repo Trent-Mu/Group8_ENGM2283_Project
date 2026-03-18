@@ -1,4 +1,5 @@
 #include "Property_Controller.h"
+#include "Property_Registry_Class.h"
 
 int main(void) {
 
@@ -15,6 +16,7 @@ int main(void) {
 	cout << "Enter C to clear database" << endl; // already done
 
 	// to test the classes as asked for class implementation deadline
+	
 	property_controller<property*> list;
 
 	residential r1("Jane Doe", 123456789, "janedoe@gmail.com", 2015, 2000, " 1035 Spring Garden", 2000.5, 3000000.00, 3);

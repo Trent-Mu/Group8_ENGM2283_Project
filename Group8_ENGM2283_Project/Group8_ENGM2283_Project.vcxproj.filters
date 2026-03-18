@@ -23,9 +23,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Property_Controller_Implementation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Property_Registry_Implementation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
