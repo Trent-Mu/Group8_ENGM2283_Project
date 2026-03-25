@@ -58,9 +58,9 @@ bool owner::isValidEmail() const {
 	return !(dot >= (email.length() - 1));
 }
 void owner::owner_display() const {
-	cout << "Owner name: " << name;
-	cout << "Tax ID: " << tax_id;
-	cout << "Email: " << email;
+	cout << "Owner name: " << name << endl;
+	cout << "Tax ID: " << tax_id << endl;
+	cout << "Email: " << email << endl;
 }
 
 string owner::get_name() const {

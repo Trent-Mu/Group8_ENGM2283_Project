@@ -51,6 +51,7 @@ private:
 	date info;
 public:
 	property(string n = " ", int id = 0, string em = " ", int bought = 0, int built = 0, string adr = " ", float sqft = 0, float mpr = 0);
+	virtual ~property() = default;
 	float get_square_feet() const;
 	string get_address() const;
 	virtual void display() const;
