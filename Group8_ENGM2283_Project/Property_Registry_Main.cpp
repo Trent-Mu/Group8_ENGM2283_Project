@@ -123,29 +123,46 @@ int main(void) {
 			cin >> choice;
 			choice = (char)tolower(choice);
 			if (choice == 'p') {
-				sort(list, choice);
+				Sort(list, choice);
 			}
 			else if (choice == 's') {
-
+				Sort(list, choice);
 			}
 			else if (choice == 'x') {
 				break;
-			}
-			else {
-				cout << "Invalid input. Enter either P, S, or X.";
 			}
 			
 		}
 		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
 		else if (choice == 'd') {
 			while (true) {
-				
-				
-				
-				if (choice == 'x') break;
 
+			cout << "Delete: address (A), owner name (N) or email (E)";
+			cin >> choice;
 
-
+			choice = (char)tolower(choice);
+			string del;
+			if (choice == 'a') {
+				cout << "Which address would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'n') {
+				cout << "Which owner name would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'i') {
+				cout << "Which owner ID would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'e') {
+				cout << "Which email would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'x') break;
 
 			}
 		}
