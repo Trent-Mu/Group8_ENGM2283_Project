@@ -14,7 +14,7 @@ int main(void) {
 	cout << "Enter R to retrieve property by: " << endl;// im curious about how to search through, what is the search condition?
 	cout << "Enter S to sort properties by: " << endl; //we just need to choose a sort condition
 	cout << "Enter D to delete property" << endl; //we can choose to delete a certain property, delete first or delete last -- depends on search condition, or not who knows 
-	cout << "Enter C to check number of properties" << endl; //already done
+	cout << "Enter N to check number of properties" << endl; //already done
 	cout << "Enter E to check if database empty" << endl; // already done
 	cout << "Enter C to clear database" << endl; // already done
 
@@ -96,7 +96,7 @@ int main(void) {
 		else if (choice == 'S') {
 			
 
-			
+
 		}
 		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
 		else if (choice == 'D') {
@@ -117,11 +117,21 @@ int main(void) {
 		}
 		//empty function, just checks if the database is empty, pretty clear what to do
 		else if (choice == 'E') {
+			if (list.empty()) {
 
+				cout << "Database is empty." << endl;
+			}
+			else {
+				cout << "Database contains " << list.count() << "property records." << endl;
+			}
 		}
 		//clears the database, pretty clear what to do
 		else if (choice == 'C') {
+			list.clear();
 
+			if (list.empty()) {
+				cout << "Database succesfully cleared. Memory has been freed." << endl;
+			}
 		}
 
 	}
