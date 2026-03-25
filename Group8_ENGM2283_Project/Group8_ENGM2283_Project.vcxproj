@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Helper_Functions.h" />
     <ClInclude Include="Property_Controller.h" />
     <ClInclude Include="Property_Registry_Class.h" />
   </ItemGroup>

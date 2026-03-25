@@ -1,6 +1,6 @@
 #include "Property_Controller.h"
 #include "Property_Registry_Class.h"
-#include "Property_Registry_Implementation.cpp"
+#include "Helper_Functions.h"
 
 int main(void) {
 
@@ -103,7 +103,7 @@ int main(void) {
 					cout << "Enter owner id to search by: ";
 					int id;
 					cin >> id;
-					Retrieve(list, id, choice);
+					Retrieve(list, to_string(id) , choice);
 				}else if (choice == 'e') {
 					cout << "Enter email to search by:";
 					string email;
