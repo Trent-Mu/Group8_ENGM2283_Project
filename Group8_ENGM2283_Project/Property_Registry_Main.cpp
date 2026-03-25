@@ -3,41 +3,18 @@
 #include "Helper_Functions.h"
 
 int main(void) {
-
-
+	
+	
 	char choice;
 
 	property_controller<property*> list;
 
-	cout << "Property Registry Database:" << endl;
-	cout << "Enter A to add new property" << endl;//easy
-	cout << "Enter R to retrieve property by: " << endl;// im curious about how to search through, what is the search condition?
-	cout << "Enter S to sort properties by: " << endl; //we just need to choose a sort condition
-	cout << "Enter D to delete property" << endl; //we can choose to delete a certain property, delete first or delete last -- depends on search condition, or not who knows 
-	cout << "Enter N to check number of properties" << endl; //already done
-	cout << "Enter E to check if database empty" << endl; // already done
-	cout << "Enter C to clear database" << endl; // already done
-
-	// to test the classes as asked for class implementation deadline
-	/*
-	property_controller<property*> list;
-
-	residential r1("Jane Doe", 123456789, "janedoe@gmail.com", 2015, 2000, " 1035 Spring Garden", 2000.5, 3000000.00, 3);
-	commercial c1("Dalhousie University", 254681973, "dalhousiefacilities@dal.ca", 2024, 2015, "1548 Oxford St", 5430, 5325000.00, "public university");
-
-	list.store(&r1);
-	list.store(&c1);
-
-	cout << "Property inventory test" << endl;
-	list.print();		// printing the whole database
-	*/
-	////////////// end of asked material for class implementation testing
-
-	
+	display_menu();
 	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
-	while (1) {
+		while (1) {
 		cout << endl;
 		cout << "Input (Q to quit): ";
+		cout << "Enter P to print selection menu:";
 		cin >> choice;
 		choice = (char)tolower(choice);
 		cout << endl;
@@ -45,6 +22,9 @@ int main(void) {
 		if (choice == 'q') {
 			cout << "Exited Successfully";
 			break;
+		} 
+		else if (choice == 'p') {
+			display_menu();
 		}
 		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
 		else if (choice == 'a') {
@@ -161,34 +141,34 @@ int main(void) {
 			}
 			else if (choice == 'x') break;
 
+
+
+				}
 			}
 		}
-		//count function, pretty clear what to do
-		else if (choice == 'n') {
-			cout << "Database contains " << list.count() << " properties.";
-		}
-		//empty function, just checks if the database is empty, pretty clear what to do
-		else if (choice == 'e') {
-			if (list.empty()) {
-
-				cout << "Database is empty." << endl;
+			//count function, pretty clear what to do
+			else if (choice == 'n') {
+				cout << "Database contains " << list.count() << " properties.";
 			}
-			else {
-				cout << "Database contains " << list.count() << "property records." << endl;
+			//empty function, just checks if the database is empty, pretty clear what to do
+			else if (choice == 'e') {
+				if (list.empty()) {
+
+					cout << "Database is empty." << endl;
+				}
+				else {
+					cout << "Database contains " << list.count() << "property records." << endl;
+				}
+			}
+			//clears the database, pretty clear what to do
+			else if (choice == 'c') {
+				list.clear();
+
+				if (list.empty()) {
+					cout << "Database succesfully cleared. Memory has been freed." << endl;
+				}
 			}
 		}
-		//clears the database, pretty clear what to do
-		else if (choice == 'c') {
-			list.clear();
-
-			if (list.empty()) {
-				cout << "Database succesfully cleared. Memory has been freed." << endl;
-			}
-		}
-
-	}
-
-
 	return 0;
 }
 

@@ -34,7 +34,6 @@ public:
 	void clear(); //clear the linked list
 	void print() const;
 
-
 };
 
 
