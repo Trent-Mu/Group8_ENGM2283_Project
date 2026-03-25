@@ -1,6 +1,6 @@
 #include "Property_Controller.h"
 #include "Property_Registry_Class.h"
-
+#include "Property_Registry_Implementation.cpp"
 
 int main(void) {
 
@@ -39,16 +39,16 @@ int main(void) {
 		cout << endl;
 		cout << "Input (Q to quit): ";
 		cin >> choice;
-
+		choice = (char)tolower(choice);
 		cout << endl;
 
-		if (choice == 'Q' || choice == 'q') {
+		if (choice == 'q') {
 			cout << "Exited Successfully";
 			break;
 		}
 		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
-		else if (choice == 'A') {
-			while (true) {
+		else if (choice == 'a') {
+			while (true){
 				string name, email, address, business;
 				int taxid, bought, built, bedc;
 				float sqrfeet, marketv;
@@ -82,18 +82,43 @@ int main(void) {
 		//for this i want someone to prompt user for what they are searching for 'a' for address 'n' for owner name 'i' for owner id 'e' for email
 		//then prompt based on a n i e what thing they are searching for, for exmaple if they put in a, then prompt them for the exact address
 		// then call Retrieeve function
-		else if (choice == 'R') {
+		else if (choice == 'r') {
 			while (true) {
+				cout << "Retreieve property by: address (a), name (n), owner id (i), email (e)" << endl << "x to quit" << endl;
+				cin >> choice;
+				choice = (char)tolower(choice);
+				if (choice == 'a') {
+					cout << "Enter address to search for: ";
+					string address;
+					getline(cin, address);
+					Retrieve(list, address, choice);
 
+				}else if (choice == 'n') {
+					cout << "Enter name to search for: ";
+					string name;
+					getline(cin, name);
+					Retrieve(list, name, choice);
 
+				}else if (choice == 'i') {
+					cout << "Enter owner id to search by: ";
+					int id;
+					cin >> id;
+					Retrieve(list, id, choice);
+				}else if (choice == 'e') {
+					cout << "Enter email to search by:";
+					string email;
+					getline(cin, email);
+					Retrieve(list, email, choice);
 
-				if (choice == 'x' || choice == 'X') break;
-
-
+				}else if (choice == 'x') break;
+					
+				else {
+					cout << "Invalid choice";
+				}
 			}
 		}
 		//prompt user to search by m - market price, or s - square feet, then call sort functions
-		else if (choice == 'S') {
+		else if (choice == 's') {
 			cout << "Search by market price (P) or square feet (S), enter X to return to main program: ";
 			cin >> choice;
 			choice = (char)tolower(choice);
@@ -112,12 +137,12 @@ int main(void) {
 			
 		}
 		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
-		else if (choice == 'D') {
+		else if (choice == 'd') {
 			while (true) {
 				
 				
 				
-				if (choice == 'x' || choice == 'X') break;
+				if (choice == 'x') break;
 
 
 
@@ -125,15 +150,15 @@ int main(void) {
 			}
 		}
 		//count function, pretty clear what to do
-		else if (choice == 'N') {
+		else if (choice == 'n') {
 			
 		}
 		//empty function, just checks if the database is empty, pretty clear what to do
-		else if (choice == 'E') {
+		else if (choice == 'e') {
 
 		}
 		//clears the database, pretty clear what to do
-		else if (choice == 'C') {
+		else if (choice == 'c') {
 
 		}
 

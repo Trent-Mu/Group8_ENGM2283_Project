@@ -123,27 +123,27 @@ void commercial::display() const {
 // HELPER FUNCTIONS
 
 template <typename T>
-void retrieve(const property_controller<T>& list, auto search, char choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
+void Retrieve(const property_controller<T>& list, auto search, char choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
 	
 	try {
 		if (choice == 'a') {
-			(list.Retrieve([search](const T & a) {
+			(list.retrieve([search](const T & a) {
 				return search == a.get_address();
 			})).display();
 		}
 		//call retrieve in here with lambda function call, having search in the scope 
 		else if (choice == 'n') {
-			(list.Retrieve([search](const T & a) {
+			(list.retrieve([search](const T & a) {
 				return search == a.get_name();
 			})).display();
 		}
 		else if (choice == 'i') {
-			(list.Retrieve([search](const T & a) {
+			(list.retrieve([search](const T & a) {
 				return search == a.get_taxid();
 			})).display();
 		}
 		else if (choice == 'e') {
-			(list.Retrieve([search](const T & a) {
+			(list.retrieve([search](const T & a) {
 				return search == a.get_email();
 			})).display();
 		}
@@ -164,17 +164,17 @@ void retrieve(const property_controller<T>& list, auto search, char choice) { //
 }
 
 template <typename T>
-void sort(property_controller<T>& list, char choice) { //can sort by market price, or by square feet
+void Sort(property_controller<T>& list, char choice) { //can sort by market price, or by square feet
 															
 	try {
 		if (choice == 'p') {
-			list.perform_sort([](const T& a, const T& b) {
+			list.sort([](const T& a, const T& b) {
 				return a.get_market_price() < b.get_market_price();
 				});
 			cout << "Sorted by Market Price." << endl;
 		}
 		else if (choice == 's') {
-			list.perform_sort([](const T& a, const T& b) {
+			list.sort([](const T& a, const T& b) {
 				return a.get_square_feet() < b.get_square_feet();
 				});
 			cout << "Sorted by Square Footage." << endl;
