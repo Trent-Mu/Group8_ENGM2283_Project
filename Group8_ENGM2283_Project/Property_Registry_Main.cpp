@@ -141,22 +141,22 @@ int main(void) {
 			string del;
 			if (choice == 'a') {
 				cout << "Which address would you like to delete?";
-				cin >> del;
+				getline(cin, del);
 				remove(list, del, choice);
 			}
 			else if (choice == 'n') {
 				cout << "Which owner name would you like to delete?";
-				cin >> del;
+				getline(cin, del);
 				remove(list, del, choice);
 			}
 			else if (choice == 'i') {
 				cout << "Which owner ID would you like to delete?";
-				cin >> del;
+				getline(cin, del);
 				remove(list, del, choice);
 			}
 			else if (choice == 'e') {
 				cout << "Which email would you like to delete?";
-				cin >> del;
+				getline(cin, del);
 				remove(list, del, choice);
 			}
 			else if (choice == 'x') break;

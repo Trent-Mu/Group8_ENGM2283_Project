@@ -56,6 +56,7 @@ public:
 	virtual void display() const;
 	const owner& get_owner() const;
 	const date& get_date() const;
+	float get_market_price() const;
 };
 
 /////////////////////////////////////////////////////////

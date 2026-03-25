@@ -72,7 +72,7 @@ int owner::get_taxid() const {
 	return tax_id;
 }
 
-// METHOD IMPLEMENTATION for BASE(property) class
+
 
 
 // BASE CLASS METHOD IMPLEMENTATION
@@ -82,6 +82,9 @@ float property::get_square_feet() const {
 
 string property::get_address() const {
 	return address;
+}
+float property::get_market_price() const {
+	return market_price;
 }
 
 void property::display() const {
