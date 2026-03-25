@@ -1,6 +1,6 @@
 #include "Property_Controller.h"
 #include "Property_Registry_Class.h"
-#include "Property_Registry_Implementation.cpp"
+#include "Helper_Functions.h"
 
 int main(void) {
 	
@@ -83,7 +83,7 @@ int main(void) {
 					cout << "Enter owner id to search by: ";
 					int id;
 					cin >> id;
-					Retrieve(list, id, choice);
+					Retrieve(list, to_string(id) , choice);
 				}else if (choice == 'e') {
 					cout << "Enter email to search by:";
 					string email;
@@ -92,9 +92,6 @@ int main(void) {
 
 				}else if (choice == 'x') break;
 					
-				else {
-					cout << "Invalid choice";
-				}
 			}
 		}
 		//prompt user to search by m - market price, or s - square feet, then call sort functions
@@ -103,20 +100,46 @@ int main(void) {
 			cin >> choice;
 			choice = (char)tolower(choice);
 			if (choice == 'p') {
-				sort(list, choice);
+				Sort(list, choice);
 			}
 			else if (choice == 's') {
-
-
+				Sort(list, choice);
 			}
-			//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
-			else if (choice == 'd') {
-				while (true) {
+			else if (choice == 'x') {
+				break;
+			}
+			
+		}
+		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
+		else if (choice == 'd') {
+			while (true) {
 
+			cout << "Delete: address (A), owner name (N) or email (E)";
+			cin >> choice;
 
-
-					if (choice == 'x') break;
-
+			choice = (char)tolower(choice);
+			string del;
+			if (choice == 'a') {
+				cout << "Which address would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'n') {
+				cout << "Which owner name would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'i') {
+				cout << "Which owner ID would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'e') {
+				cout << "Which email would you like to delete?";
+				cin >> del;
+				remove(list, del, choice);
+			}
+			else if (choice == 'x') break;
 
 
 
