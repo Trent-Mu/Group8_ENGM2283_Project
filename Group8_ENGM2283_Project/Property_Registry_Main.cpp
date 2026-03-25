@@ -66,15 +66,15 @@ int main(void) {
 				if (choice == 'c') {
 					cout << "Enter business type: ";
 					cin >> business;
-					commercial c(name, taxid, email, bought, built, address, sqrfeet, marketv, business);
-					list.store(&c);
+					commercial* c = new commercial(name, taxid, email, bought, built, address, sqrfeet, marketv, business);
+					list.store(c);
 					cout << endl;
 				}
 				if (choice == 'r') {
 					cout << "Enter the number of bedrooms: ";
 					cin >> bedc;
-					residential r(name, taxid, email, bought, built, address, sqrfeet, marketv, bedc);
-					list.store(&r);
+					residential* r= new residential(name, taxid, email, bought, built, address, sqrfeet, marketv, bedc);
+					list.store(r);
 					cout << endl;
 				}
 			}
