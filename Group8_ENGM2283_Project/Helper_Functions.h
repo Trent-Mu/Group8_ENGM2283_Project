@@ -98,7 +98,7 @@ void Sort(property_controller<T>& list, char choice) { //can sort by market pric
 }
 
 template <typename T>
-void remove(property_controller<T>& list, string del, char choice) { // delete element by address, owner name, owner id, or email
+void Delete_property(property_controller<T>& list, string del, char choice) { // delete element by address, owner name, owner id, or email
 
 	try {
 		if (choice == 'a') {

@@ -13,8 +13,9 @@ int main(void) {
 	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
 	while (1) {
 		cout << endl;
+		cout << "Enter P to print selection menu:" << endl;
 		cout << "Input (Q to quit): ";
-		cout << "Enter P to print selection menu:";
+		
 		cin >> choice;
 		choice = (char)tolower(choice);
 		cout << endl;
@@ -37,10 +38,17 @@ int main(void) {
 				cout << endl;
 				if (choice == 'x' || choice == 'X') break;
 
-				cout << "Input the information for the  property you are trying to add in the following order:" << endl;
-				cout << "Name of owner, taxID, email, year bought, year built, adress, square feet, market value" << endl;
-				cin >> name >> taxid >> email >> bought >> built >> address >> sqrfeet >> marketv;
-				cout << endl;
+				cout << "Enter name: "; cin >> name;
+				cout << "Enter tax ID: "; cin >> taxid;
+				cout << "Enter email: "; cin >> email;
+				cout << "Enter year bought: "; cin >> bought;
+				cout << "Enter year built: "; cin >> built;
+				cout << "Enter address: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				getline(cin, address);
+				cout << "Enter square feet: "; cin >> sqrfeet;
+				cout << "Enter market value: "; cin >> marketv;
+
 
 
 				if (choice == 'c') {
@@ -69,6 +77,7 @@ int main(void) {
 				choice = (char)tolower(choice);
 				if (choice == 'a') {
 					cout << "Enter address to search for: ";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					string address;
 					getline(cin, address);
 					Retrieve(list, address, choice);
@@ -77,6 +86,7 @@ int main(void) {
 				else if (choice == 'n') {
 					cout << "Enter name to search for: ";
 					string name;
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, name);
 					Retrieve(list, name, choice);
 
@@ -89,6 +99,7 @@ int main(void) {
 				}
 				else if (choice == 'e') {
 					cout << "Enter email to search by:";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					string email;
 					getline(cin, email);
 					Retrieve(list, email, choice);
@@ -110,7 +121,7 @@ int main(void) {
 				Sort(list, choice);
 			}
 			else if (choice == 'x') {
-				break;
+				continue;
 			}
 
 		}
@@ -125,23 +136,27 @@ int main(void) {
 				string del;
 				if (choice == 'a') {
 					cout << "Which address would you like to delete?";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
-					remove(list, del, choice);
+					Delete_property(list, del, choice);
 				}
 				else if (choice == 'n') {
 					cout << "Which owner name would you like to delete?";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
-					remove(list, del, choice);
+					Delete_property(list, del, choice);
 				}
 				else if (choice == 'i') {
 					cout << "Which owner ID would you like to delete?";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
-					remove(list, del, choice);
+					Delete_property(list, del, choice);
 				}
 				else if (choice == 'e') {
 					cout << "Which email would you like to delete?";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
-					remove(list, del, choice);
+					Delete_property(list, del, choice);
 				}
 				else if (choice == 'x') break;
 
