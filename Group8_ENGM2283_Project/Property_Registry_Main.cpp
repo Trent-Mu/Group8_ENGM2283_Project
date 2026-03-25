@@ -3,15 +3,15 @@
 #include "Helper_Functions.h"
 
 int main(void) {
-	
-	
+
+
 	char choice;
 
 	property_controller<property*> list;
 
 	display_menu();
 	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
-		while (1) {
+	while (1) {
 		cout << endl;
 		cout << "Input (Q to quit): ";
 		cout << "Enter P to print selection menu:";
@@ -22,13 +22,13 @@ int main(void) {
 		if (choice == 'q') {
 			cout << "Exited Successfully";
 			break;
-		} 
+		}
 		else if (choice == 'p') {
 			display_menu();
 		}
 		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
 		else if (choice == 'a') {
-			while (true){
+			while (true) {
 				string name, email, address, business;
 				int taxid, bought, built, bedc;
 				float sqrfeet, marketv;
@@ -53,7 +53,7 @@ int main(void) {
 				if (choice == 'r') {
 					cout << "Enter the number of bedrooms: ";
 					cin >> bedc;
-					residential* r= new residential(name, taxid, email, bought, built, address, sqrfeet, marketv, bedc);
+					residential* r = new residential(name, taxid, email, bought, built, address, sqrfeet, marketv, bedc);
 					list.store(r);
 					cout << endl;
 				}
@@ -73,25 +73,29 @@ int main(void) {
 					getline(cin, address);
 					Retrieve(list, address, choice);
 
-				}else if (choice == 'n') {
+				}
+				else if (choice == 'n') {
 					cout << "Enter name to search for: ";
 					string name;
 					getline(cin, name);
 					Retrieve(list, name, choice);
 
-				}else if (choice == 'i') {
+				}
+				else if (choice == 'i') {
 					cout << "Enter owner id to search by: ";
 					int id;
 					cin >> id;
-					Retrieve(list, to_string(id) , choice);
-				}else if (choice == 'e') {
+					Retrieve(list, to_string(id), choice);
+				}
+				else if (choice == 'e') {
 					cout << "Enter email to search by:";
 					string email;
 					getline(cin, email);
 					Retrieve(list, email, choice);
 
-				}else if (choice == 'x') break;
-					
+				}
+				else if (choice == 'x') break;
+
 			}
 		}
 		//prompt user to search by m - market price, or s - square feet, then call sort functions
@@ -108,67 +112,67 @@ int main(void) {
 			else if (choice == 'x') {
 				break;
 			}
-			
+
 		}
 		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
 		else if (choice == 'd') {
 			while (true) {
 
-			cout << "Delete: address (A), owner name (N) or email (E)";
-			cin >> choice;
+				cout << "Delete: address (A), owner name (N) or email (E)";
+				cin >> choice;
 
-			choice = (char)tolower(choice);
-			string del;
-			if (choice == 'a') {
-				cout << "Which address would you like to delete?";
-				getline(cin, del);
-				remove(list, del, choice);
-			}
-			else if (choice == 'n') {
-				cout << "Which owner name would you like to delete?";
-				getline(cin, del);
-				remove(list, del, choice);
-			}
-			else if (choice == 'i') {
-				cout << "Which owner ID would you like to delete?";
-				getline(cin, del);
-				remove(list, del, choice);
-			}
-			else if (choice == 'e') {
-				cout << "Which email would you like to delete?";
-				getline(cin, del);
-				remove(list, del, choice);
-			}
-			else if (choice == 'x') break;
-
-
-
+				choice = (char)tolower(choice);
+				string del;
+				if (choice == 'a') {
+					cout << "Which address would you like to delete?";
+					getline(cin, del);
+					remove(list, del, choice);
 				}
+				else if (choice == 'n') {
+					cout << "Which owner name would you like to delete?";
+					getline(cin, del);
+					remove(list, del, choice);
+				}
+				else if (choice == 'i') {
+					cout << "Which owner ID would you like to delete?";
+					getline(cin, del);
+					remove(list, del, choice);
+				}
+				else if (choice == 'e') {
+					cout << "Which email would you like to delete?";
+					getline(cin, del);
+					remove(list, del, choice);
+				}
+				else if (choice == 'x') break;
+
+
+
 			}
 		}
-			//count function, pretty clear what to do
-			else if (choice == 'n') {
-				cout << "Database contains " << list.count() << " properties.";
-			}
-			//empty function, just checks if the database is empty, pretty clear what to do
-			else if (choice == 'e') {
-				if (list.empty()) {
 
-					cout << "Database is empty." << endl;
-				}
-				else {
-					cout << "Database contains " << list.count() << "property records." << endl;
-				}
-			}
-			//clears the database, pretty clear what to do
-			else if (choice == 'c') {
-				list.clear();
+		//count function, pretty clear what to do
+		else if (choice == 'n') {
+			cout << "Database contains " << list.count() << " properties.";
+		}
+		//empty function, just checks if the database is empty, pretty clear what to do
+		else if (choice == 'e') {
+			if (list.empty()) {
 
-				if (list.empty()) {
-					cout << "Database succesfully cleared. Memory has been freed." << endl;
-				}
+				cout << "Database is empty." << endl;
+			}
+			else {
+				cout << "Database contains " << list.count() << "property records." << endl;
 			}
 		}
+		//clears the database, pretty clear what to do
+		else if (choice == 'c') {
+			list.clear();
+
+			if (list.empty()) {
+				cout << "Database succesfully cleared. Memory has been freed." << endl;
+			}
+		}
+	}
 	return 0;
 }
 
