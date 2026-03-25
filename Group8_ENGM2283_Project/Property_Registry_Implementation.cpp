@@ -16,21 +16,6 @@ commercial::commercial(string n, int id, string em, int bought, int built, strin
 
 // METHOD IMPLEMENTATION FOR COMPOSITION CLASSES date and owner
 
-const string LINE_BREAK = "____________________________________________";
-
-void display_menu() {
-	cout << "\n" << LINE_BREAK << endl;
-	cout << "           Property Registry Database:" << endl;
-	cout << LINE_BREAK << endl;
-	cout << "Enter A to add new property" << endl;//easy
-	cout << "Enter R to retrieve property by: " << endl;// im curious about how to search through, what is the search condition?
-	cout << "Enter S to sort properties by: " << endl; //we just need to choose a sort condition
-	cout << "Enter D to delete property" << endl; //we can choose to delete a certain property, delete first or delete last -- depends on search condition, or not who knows 
-	cout << "Enter N to check number of properties" << endl; //already done
-	cout << "Enter E to check if database empty" << endl; // already done
-	cout << "Enter C to clear database" << endl; // already done
-	cout << "Enter P to print the selection options" << endl;
-}
 
 bool date::isNewHouse() const {// new = built past 2020
 	return year_built > 2020;
