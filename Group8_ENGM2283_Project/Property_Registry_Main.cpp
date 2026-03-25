@@ -13,7 +13,6 @@ int main(void) {
 	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
 	while (1) {
 		cout << endl;
-		cout << "Enter P to print selection menu:" << endl;
 		cout << "Input (Q to quit): ";
 		
 		cin >> choice;
@@ -35,8 +34,9 @@ int main(void) {
 				float sqrfeet, marketv;
 				cout << "Enter the type of property (commercial = c, residential = r) (x to quit): ";
 				cin >> choice;
+				choice = (char)tolower(choice);
 				cout << endl;
-				if (choice == 'x' || choice == 'X') break;
+				if (choice == 'x') break;
 
 				cout << "Enter name: "; cin >> name;
 				cout << "Enter tax ID: "; cin >> taxid;
@@ -53,7 +53,8 @@ int main(void) {
 
 				if (choice == 'c') {
 					cout << "Enter business type: ";
-					cin >> business;
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					getline(cin, business);
 					commercial* c = new commercial(name, taxid, email, bought, built, address, sqrfeet, marketv, business);
 					list.store(c);
 					cout << endl;
@@ -176,7 +177,7 @@ int main(void) {
 				cout << "Database is empty." << endl;
 			}
 			else {
-				cout << "Database contains " << list.count() << "property records." << endl;
+				cout << "Database contains " << list.count() << " property records." << endl;
 			}
 		}
 		//clears the database, pretty clear what to do
@@ -186,6 +187,9 @@ int main(void) {
 			if (list.empty()) {
 				cout << "Database succesfully cleared. Memory has been freed." << endl;
 			}
+		}
+		else if (choice == 'z') {
+			list.print();
 		}
 	}
 	return 0;

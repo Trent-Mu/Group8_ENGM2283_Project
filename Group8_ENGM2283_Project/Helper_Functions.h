@@ -9,7 +9,7 @@ const string LINE_BREAK = "____________________________________________";
 
 void display_menu() {
 	cout << "\n" << LINE_BREAK << endl;
-	cout << "           Property Registry Database:" << endl;
+	cout << "         Property Registry Database:" << endl;
 	cout << LINE_BREAK << endl;
 	cout << "Enter A to add new property" << endl;//easy
 	cout << "Enter R to retrieve property by: " << endl;// im curious about how to search through, what is the search condition?
@@ -19,6 +19,7 @@ void display_menu() {
 	cout << "Enter E to check if database empty" << endl; // already done
 	cout << "Enter C to clear database" << endl; // already done
 	cout << "Enter P to print the selection options" << endl;
+	cout << "Enter Z to print full database" << endl;
 }
 
 
