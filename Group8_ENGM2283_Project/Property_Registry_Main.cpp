@@ -112,9 +112,6 @@ int main(void) {
 
 				}else if (choice == 'x') break;
 					
-				else {
-					cout << "Invalid choice";
-				}
 			}
 		}
 		//prompt user to search by m - market price, or s - square feet, then call sort functions
