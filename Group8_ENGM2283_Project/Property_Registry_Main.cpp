@@ -144,7 +144,7 @@ int main(void) {
 		}
 		//count function, pretty clear what to do
 		else if (choice == 'n') {
-			
+			cout << "Database contains " << list.count() << " properties.";
 		}
 		//empty function, just checks if the database is empty, pretty clear what to do
 		else if (choice == 'e') {
