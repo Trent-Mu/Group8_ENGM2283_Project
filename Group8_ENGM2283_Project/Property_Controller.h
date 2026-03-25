@@ -225,6 +225,7 @@ void property_controller<T>::Delete(del key) {
 			if (current->next != nullptr) {
 				current->next->previous = current->previous;
 			}
+			delete current->data;
 			delete current;
 			current = nextNode;
 		}
@@ -279,6 +280,7 @@ void property_controller<T>::clear() {
 	while (current != nullptr) {
 		node* temp = current;
 		current = current->next;
+		delete temp->data;
 		delete temp;
 	}
 

@@ -2,6 +2,7 @@
 #define HELPER_FUNCTION_H
 
 #include "Property_Controller.h"
+#include "Property_Registry_Class.h"
 
 template <typename T>
 void Retrieve(const property_controller<T>& list, string search, char choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
@@ -50,13 +51,13 @@ void Sort(property_controller<T>& list, char choice) { //can sort by market pric
 	try {
 		if (choice == 'p') {
 			list.sort([](const T& a, const T& b) {
-				return a.get_market_price() < b.get_market_price();
+				return a->get_market_price() < b->get_market_price();
 				});
 			cout << "Sorted by Market Price." << endl;
 		}
 		else if (choice == 's') {
 			list.sort([](const T& a, const T& b) {
-				return a.get_square_feet() < b.get_square_feet();
+				return a->get_square_feet() < b->get_square_feet();
 				});
 			cout << "Sorted by Square Footage." << endl;
 		}
