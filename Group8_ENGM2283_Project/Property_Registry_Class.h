@@ -54,6 +54,8 @@ public:
 	float get_square_feet() const;
 	string get_address() const;
 	virtual void display() const;
+	const owner& get_owner() const;
+	const date& get_date() const;
 };
 
 /////////////////////////////////////////////////////////
