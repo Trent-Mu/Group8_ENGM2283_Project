@@ -42,13 +42,13 @@ int main(void) {
 
 		cout << endl;
 
-		if (choice == 'Q'||choice == 'q') {
+		if (choice == 'Q' || choice == 'q') {
 			cout << "Exited Successfully";
 			break;
 		}
 		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
 		else if (choice == 'A') {
-			while (true){
+			while (true) {
 				string name, email, address, business;
 				int taxid, bought, built, bedc;
 				float sqrfeet, marketv;
@@ -94,8 +94,21 @@ int main(void) {
 		}
 		//prompt user to search by m - market price, or s - square feet, then call sort functions
 		else if (choice == 'S') {
-			
+			cout << "Search by market price (P) or square feet (S), enter X to return to main program: ";
+			cin >> choice;
+			choice = (char)tolower(choice);
+			if (choice == 'p') {
+				sort(list, choice);
+			}
+			else if (choice == 's') {
 
+			}
+			else if (choice == 'x') {
+				break;
+			}
+			else {
+				cout << "Invalid input. Enter either P, S, or X.";
+			}
 			
 		}
 		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
