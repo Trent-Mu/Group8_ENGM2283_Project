@@ -4,7 +4,6 @@
 
 int main(void) {
 
-
 	char choice;
 
 	property_controller<property*> list;
@@ -28,11 +27,19 @@ int main(void) {
 		}
 		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
 		else if (choice == 'a') {
+			
+			cout << LINE_BREAK << LINE_BREAK;
+			cout << endl << endl;
+
 			while (true) {
 				string name, email, address, business;
 				int taxid, bought, built, bedc;
 				float sqrfeet, marketv;
-				cout << "Enter the type of property (commercial = c, residential = r) (x to quit): ";
+				cout << "Enter the type of property:" << endl;
+				cout << "(C) Commercial" << endl;
+				cout << "(R) Residential" << endl;
+				cout << "(X) Quit" << endl << endl;
+				cout << "Input: ";
 				cin >> choice;
 				choice = (char)tolower(choice);
 				cout << endl;
@@ -67,21 +74,32 @@ int main(void) {
 					cout << endl;
 				}
 			}
+			cout << LINE_BREAK << LINE_BREAK << endl;
 		}
 		//for this i want someone to prompt user for what they are searching for 'a' for address 'n' for owner name 'i' for owner id 'e' for email
 		//then prompt based on a n i e what thing they are searching for, for exmaple if they put in a, then prompt them for the exact address
 		// then call Retrieeve function
 		else if (choice == 'r') {
+			cout << LINE_BREAK << LINE_BREAK;
+			cout << endl << endl;
 			while (true) {
-				cout << "Retreieve property by: address (a), name (n), owner id (i), email (e)" << endl << "x to quit" << endl;
+				cout << "Retrieve properties by:" << endl;
+				cout << "(A) Address" << endl;
+				cout << "(N) Owner name" << endl;
+				cout << "(I) Owner tax id" << endl;
+				cout << "(E) Owner email" << endl;
+				cout << "(X) Quit" << endl << endl;
+				cout << "Input: ";
 				cin >> choice;
 				choice = (char)tolower(choice);
 				if (choice == 'a') {
-					cout << "Enter address to search for: ";
+					cout << endl <<  "Enter address to search for: ";
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					string address;
 					getline(cin, address);
+					cout << endl;
 					Retrieve(list, address, choice);
+					cout << endl;
 
 				}
 				else if (choice == 'n') {
@@ -89,30 +107,44 @@ int main(void) {
 					string name;
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, name);
+					cout << endl;
 					Retrieve(list, name, choice);
-
+					cout << endl;
 				}
 				else if (choice == 'i') {
 					cout << "Enter owner id to search by: ";
 					int id;
 					cin >> id;
+					cout << endl;
 					Retrieve(list, to_string(id), choice);
+					cout << endl;
 				}
 				else if (choice == 'e') {
 					cout << "Enter email to search by:";
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					string email;
 					getline(cin, email);
+					cout << endl;
 					Retrieve(list, email, choice);
-
+					cout << endl;
 				}
-				else if (choice == 'x') break;
-
+				else if (choice == 'x') {
+					break;
+				}
 			}
+			cout << endl;
+			cout << LINE_BREAK << LINE_BREAK;
+			cout << endl;
 		}
 		//prompt user to search by m - market price, or s - square feet, then call sort functions
 		else if (choice == 's') {
-			cout << "Search by market price (P) or square feet (S), enter X to return to main program: ";
+			cout << LINE_BREAK << LINE_BREAK;
+			cout << endl << endl;
+			cout << "Search Properties by:" << endl;
+			cout << "(M) Market price" << endl;
+			cout << "(S) Square feet" << endl;
+			cout << "(X) Quit" << endl << endl;
+			cout << "Input: ";
 			cin >> choice;
 			choice = (char)tolower(choice);
 			if (choice == 'p') {
@@ -122,56 +154,86 @@ int main(void) {
 				Sort(list, choice);
 			}
 			else if (choice == 'x') {
+				cout << endl;
+				cout << LINE_BREAK << LINE_BREAK;
+				cout << endl;
 				continue;
 			}
-
+			
 		}
 		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
 		else if (choice == 'd') {
+			
+			cout << LINE_BREAK << LINE_BREAK;
+			cout << endl << endl;
 			while (true) {
 
-				cout << "Delete: address (A), owner name (N) or email (E)";
+				cout << "Delete Properties by:" << endl;
+				cout << "(A) Address" << endl;
+				cout << "(N) Owner name" << endl;
+				cout << "(I) Owner tax id" << endl;
+				cout << "(E) Owner Email" << endl;
+				cout << "(X) Quit" << endl << endl;
+				cout << "Input: ";
 				cin >> choice;
 
 				choice = (char)tolower(choice);
 				string del;
+				cout << endl;
 				if (choice == 'a') {
-					cout << "Which address would you like to delete?";
+					cout << "Enter address to delete: ";
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
+					cout << endl;
 				}
 				else if (choice == 'n') {
-					cout << "Which owner name would you like to delete?";
+					cout << "Enter name to delete: ";
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
+					cout << endl;
 				}
 				else if (choice == 'i') {
-					cout << "Which owner ID would you like to delete?";
+					cout << "Enter owner tax id to delete: ";
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
+					cout << endl;
 				}
 				else if (choice == 'e') {
-					cout << "Which email would you like to delete?";
+					cout << "Enter email to delete: ";
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
+					cout << endl;
 				}
-				else if (choice == 'x') break;
+				else if (choice == 'x') {
+					break;
+				}
 
 
 
 			}
+			cout << endl;
+			cout << LINE_BREAK << LINE_BREAK;
+			cout << endl;
 		}
 
 		//count function, pretty clear what to do
 		else if (choice == 'n') {
+			cout << endl;
+			cout << LINE_BREAK;
+			cout << endl << endl;
 			cout << "Database contains " << list.count() << " properties.";
+			cout << endl;
+			cout << LINE_BREAK;
+			cout << endl;
 		}
 		//empty function, just checks if the database is empty, pretty clear what to do
 		else if (choice == 'e') {
+			cout << LINE_BREAK;
+			cout << endl << endl;
 			if (list.empty()) {
 
 				cout << "Database is empty." << endl;
@@ -179,17 +241,27 @@ int main(void) {
 			else {
 				cout << "Database contains " << list.count() << " property records." << endl;
 			}
+			cout << LINE_BREAK;
+			cout << endl;
 		}
 		//clears the database, pretty clear what to do
 		else if (choice == 'c') {
+			cout << LINE_BREAK;
+			cout << endl << endl;
 			list.clear();
 
 			if (list.empty()) {
 				cout << "Database succesfully cleared. Memory has been freed." << endl;
 			}
+			cout << LINE_BREAK;
+			cout << endl;
 		}
 		else if (choice == 'z') {
+			cout << LINE_BREAK;
+			cout << endl << endl;
 			list.print();
+			cout << LINE_BREAK;
+			cout << endl;
 		}
 	}
 	return 0;

@@ -119,7 +119,7 @@ void Delete_property(property_controller<T>& list, string del, char choice) { //
 				return p->get_owner().get_email() == del; });
 		}
 		else {
-			throw invalid_argument("Wrong charachter!(Try n - name search, i - tax id search or e - email search");
+			throw invalid_argument("Wrong character!(Try n - name search, i - tax id search or e - email search");
 		}
 	}
 	catch (const exception& e) {
