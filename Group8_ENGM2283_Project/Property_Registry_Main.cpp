@@ -2,15 +2,21 @@
 #include "Property_Registry_Class.h"
 #include "Helper_Functions.h"
 
+/**********************************************************************************************************************
+Property Registry Main:
+
+- Initializes the property database and presents an interactive menu - driven interface.
+- Handles user input to 'a' - add, 'r' - retrieve, 's' - sort, 'd' - delete, and manage property records until the user chooses to quit.
+**********************************************************************************************************************/
 int main(void) {
-
-
+	
 	char choice;
 
 	property_controller<property*> list;
-
+	// Display the main menu once at program startup
 	display_menu();
-	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
+
+	// Main event loop — continues processing user input until 'Q' is entered
 	while (1) {
 		cout << endl;
 		cout << "Input (Q to quit): ";
@@ -26,7 +32,14 @@ int main(void) {
 		else if (choice == 'p') {
 			display_menu();
 		}
-		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
+
+		/*****************************************************************************************************
+		Selection 'a' add:
+		Prompts user to enter information about the property they are adding.
+
+		Asks user to select 'c' commercial or 'r' residential for the type of building and saves the property.
+		******************************************************************************************************/
+
 		else if (choice == 'a') {
 			while (true) {
 				string name, email, address, business;
@@ -68,9 +81,15 @@ int main(void) {
 				}
 			}
 		}
-		//for this i want someone to prompt user for what they are searching for 'a' for address 'n' for owner name 'i' for owner id 'e' for email
-		//then prompt based on a n i e what thing they are searching for, for exmaple if they put in a, then prompt them for the exact address
-		// then call Retrieeve function
+		/*****************************************************************************************************************************
+		Selection 'r' retrieve:
+
+		Promts user to enter 'a' - for adress based retrieve, 'n' - for name of the owner based retrieve, 'i' - for tax id based retrieve.
+		Based on the input retrieve function is called to retrieve the data.
+
+		*Note: the entered adress/name/taxid must be exact same as it was saved.
+		******************************************************************************************************************************/
+		
 		else if (choice == 'r') {
 			while (true) {
 				cout << "Retreieve property by: address (a), name (n), owner id (i), email (e)" << endl << "x to quit" << endl;
@@ -110,9 +129,15 @@ int main(void) {
 
 			}
 		}
-		//prompt user to search by m - market price, or s - square feet, then call sort functions
+
+		/*****************************************************************************************************************************
+		Selection 's' sort:
+		
+		Promts user to enter 'p' - for price based search, 's' - for square feet based search
+		Sorts and displays all property records by market price or square footage.		
+		******************************************************************************************************************************/
 		else if (choice == 's') {
-			cout << "Search by market price (P) or square feet (S), enter X to return to main program: ";
+			cout << "Sort by market price (P) or square feet (S), enter X to return to main program: ";
 			cin >> choice;
 			choice = (char)tolower(choice);
 			if (choice == 'p') {
@@ -126,11 +151,17 @@ int main(void) {
 			}
 
 		}
-		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
+
+		/*****************************************************************************************************************************
+		Selection 'd' delete:
+
+		Removes a property record from the database based on user input.
+        User can coose to delete by 'a' - address, 'n' - owner name, 'i' - tax id, or 'e' - email address.
+		******************************************************************************************************************************/
 		else if (choice == 'd') {
 			while (true) {
 
-				cout << "Delete: address (A), owner name (N) or email (E)";
+				cout << "Delete: address (A), owner name (N), tax id (I), or email (E)";
 				cin >> choice;
 
 				choice = (char)tolower(choice);
@@ -165,12 +196,20 @@ int main(void) {
 
 			}
 		}
+		/**************************************************************************
+		Selection 'n' count:
 
-		//count function, pretty clear what to do
+		Displays the total number of property records currently in the database.
+		**************************************************************************/
 		else if (choice == 'n') {
 			cout << "Database contains " << list.count() << " properties.";
 		}
-		//empty function, just checks if the database is empty, pretty clear what to do
+
+		/******************************************************************************************
+		Selection 'e' empty:
+
+		Checks if database is empty and reports whether the database holds any property records.		
+		******************************************************************************************/
 		else if (choice == 'e') {
 			if (list.empty()) {
 
@@ -180,7 +219,11 @@ int main(void) {
 				cout << "Database contains " << list.count() << " property records." << endl;
 			}
 		}
-		//clears the database, pretty clear what to do
+		/******************************************************************************************
+		Selection 'c' clear:
+
+		Removes all property records from the database and frees allocated memory.
+		******************************************************************************************/
 		else if (choice == 'c') {
 			list.clear();
 
@@ -188,11 +231,14 @@ int main(void) {
 				cout << "Database succesfully cleared. Memory has been freed." << endl;
 			}
 		}
+		/******************************************************************************************
+		Selection 'c' clear:
+
+		Outputs all property records currently stored in the database.
+		******************************************************************************************/
 		else if (choice == 'z') {
 			list.print();
 		}
 	}
 	return 0;
 }
-
-// once we are done everything we are gonna remove all the weird comments and comment everything "professionally"
