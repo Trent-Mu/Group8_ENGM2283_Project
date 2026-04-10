@@ -4,13 +4,12 @@
 
 int main(void) {
 
-
 	char choice;
 
 	property_controller<property*> list;
 
 	display_menu();
-	// WHOMEVER IS WORKING ON THIS ONCE YOU ARE DONE THE LOGIC MAKE SURE THE CONSOLE PRINTING LOOKS NICE, ADDITIONALLY DEFINE A LINE BREAK ___________________ SOMEWHERE AND DEFINE A FUNCTION THAT PRINTS THE OPTIONS THAT THE USER HAS, ADDITIONALLY MAKE A NEW OPTION IN THE OPTIONS THAT HAS CHOICE P AND LETS THE USER DEICIDE WHEN TO REPINT THE OPTIONS SECTION!!!!!!!!!!!!
+	//beginning of main menu loop, only ending when user commands it
 	while (1) {
 		cout << endl;
 		cout << "Input (Q to quit): ";
@@ -18,15 +17,16 @@ int main(void) {
 		cin >> choice;
 		choice = (char)tolower(choice);
 		cout << endl;
-
+		//quit main menu
 		if (choice == 'q') {
 			cout << "Exited Successfully";
 			break;
 		}
+		//print main menu
 		else if (choice == 'p') {
 			display_menu();
 		}
-		//for this i just want someone to make it look nice in the console, AND make sure user can input address with spaces between the name of the address the number of the address and the location like str or blvd or crt yk
+		//add properties to database
 		else if (choice == 'a') {
 			while (true) {
 				string name, email, address, business;
@@ -68,11 +68,14 @@ int main(void) {
 				}
 			}
 		}
-		//for this i want someone to prompt user for what they are searching for 'a' for address 'n' for owner name 'i' for owner id 'e' for email
-		//then prompt based on a n i e what thing they are searching for, for exmaple if they put in a, then prompt them for the exact address
-		// then call Retrieeve function
+		//retrieve property by search condition, then print said property to screen
 		else if (choice == 'r') {
 			while (true) {
+				if (list.empty()) {
+					cout << "Database is empty" << endl << "returning to main menu: " << endl;
+					display_menu();
+					break;
+				}
 				cout << "Retreieve property by: address (a), name (n), owner id (i), email (e)" << endl << "x to quit" << endl;
 				cin >> choice;
 				choice = (char)tolower(choice);
@@ -110,9 +113,15 @@ int main(void) {
 
 			}
 		}
-		//prompt user to search by m - market price, or s - square feet, then call sort functions
+		//sort database by condition
 		else if (choice == 's') {
-			cout << "Search by market price (P) or square feet (S), enter X to return to main program: ";
+			if (list.empty()) {
+				cout << "Database is empty" << endl << "returning to main menu:" << endl;
+				display_menu();
+				continue;
+
+			}
+			cout << "Sort by market price (P) or square feet (S), enter X to return to main program: ";
 			cin >> choice;
 			choice = (char)tolower(choice);
 			if (choice == 'p') {
@@ -126,10 +135,14 @@ int main(void) {
 			}
 
 		}
-		//for this i want someone to prompt user for what they are deleting, honetly just do the same for search but replace stuff with delete...
+		//delete property by search, searching is done by condition
 		else if (choice == 'd') {
 			while (true) {
-
+				if (list.empty()) {
+					cout << "Database is empty" << endl << "returning to main menu: " << endl;
+					display_menu();
+					break;
+				}
 				cout << "Delete: address (A), owner name (N) or email (E)";
 				cin >> choice;
 
@@ -165,34 +178,50 @@ int main(void) {
 
 			}
 		}
-
-		//count function, pretty clear what to do
+		//return number of properties in the database
 		else if (choice == 'n') {
+			if (list.empty()) {
+				cout << "Database is empty" << endl << "returning to main menu: " << endl;
+				display_menu();
+				continue;
+			}
 			cout << "Database contains " << list.count() << " properties.";
 		}
-		//empty function, just checks if the database is empty, pretty clear what to do
+		//check if the database is empty
 		else if (choice == 'e') {
 			if (list.empty()) {
-
-				cout << "Database is empty." << endl;
+				cout << "Database is empty." << endl << "returning to main menu: " << endl;
+				display_menu();
 			}
 			else {
-				cout << "Database contains " << list.count() << " property records." << endl;
+				cout << "Database is not empty" << endl << "returning to main menu" << endl;
+				display_menu();
 			}
+			
 		}
-		//clears the database, pretty clear what to do
+		//clear the entire database
 		else if (choice == 'c') {
+			if (list.empty()) {
+				cout << "Database already empty" << endl << "returning to main menu: " << endl;
+				display_menu;
+				continue;
+			}
 			list.clear();
 
 			if (list.empty()) {
 				cout << "Database succesfully cleared. Memory has been freed." << endl;
 			}
 		}
+		//print the entire database
 		else if (choice == 'z') {
+			if (list.empty()) {
+				cout << "Database is empty" << endl << "returning to main menu: " << endl;
+				display_menu();
+				continue;
+			}
 			list.print();
 		}
 	}
 	return 0;
 }
 
-// once we are done everything we are gonna remove all the weird comments and comment everything "professionally"

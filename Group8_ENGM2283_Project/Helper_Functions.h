@@ -11,21 +11,26 @@ void display_menu() {
 	cout << "\n" << LINE_BREAK << endl;
 	cout << "         Property Registry Database:" << endl;
 	cout << LINE_BREAK << endl;
-	cout << "Enter A to add new property" << endl;//easy
-	cout << "Enter R to retrieve property by: " << endl;// im curious about how to search through, what is the search condition?
-	cout << "Enter S to sort properties by: " << endl; //we just need to choose a sort condition
-	cout << "Enter D to delete property" << endl; //we can choose to delete a certain property, delete first or delete last -- depends on search condition, or not who knows 
-	cout << "Enter N to check number of properties" << endl; //already done
-	cout << "Enter E to check if database empty" << endl; // already done
-	cout << "Enter C to clear database" << endl; // already done
+	cout << "Enter A to add new property" << endl;
+	cout << "Enter R to retrieve property by: " << endl;
+	cout << "Enter S to sort properties by: " << endl; 
+	cout << "Enter D to delete property" << endl; 
+	cout << "Enter N to check number of properties" << endl; 
+	cout << "Enter E to check if database empty" << endl; 
+	cout << "Enter C to clear database" << endl; 
 	cout << "Enter P to print the selection options" << endl;
 	cout << "Enter Z to print full database" << endl;
 }
 
 
-
+/*
+Overview: Search function that allows user to search by query
+Parameters: templated list, search query, search type
+Description: pass a lambda function as a template search condition into the list.retreieve that evaluates if the search query is equal to a properties needed attribute, then it displays the property, each function call is decided by user searh type, known as choice
+Return Value: void
+*/
 template <typename T>
-void Retrieve(const property_controller<T>& list, string search, char choice) { //can retrieve by address, owner name, id or email, user will input which choice they want
+void Retrieve(const property_controller<T>& list, string search, char choice) { 
 
 	try {
 		if (choice == 'a') {
@@ -33,7 +38,7 @@ void Retrieve(const property_controller<T>& list, string search, char choice) { 
 				return search == a->get_address();
 				}))->display();
 		}
-		//call retrieve in here with lambda function call, having search in the scope 
+		
 		else if (choice == 'n') {
 			(list.retrieve([search](const T& a) {
 				return search == a->get_owner().get_name();
@@ -50,24 +55,25 @@ void Retrieve(const property_controller<T>& list, string search, char choice) { 
 				}))->display();
 		}
 		else {
-			throw invalid_argument("Wrong charachter! (Try n - name search, i - tax id search or e - email search");
+			throw invalid_argument("Wrong character! (Try n - name search, i - tax id search or e - email search");
 		}
 	}
 	catch (const exception& e) {
 
 		cout << "Search Error: " << e.what() << endl;
-		//lambda function call is ([search]( const property& p) { return search == p.get_(choice)()});
 	}
-	//make sure that the correct getter is used according to choice
 
-	//alternatively replace choice with and enum and do switch case statments, thats way cooler 
 
 
 }
-
+/*
+Overview: Sorts database based on condition
+Parameters: templated list, choice ( search condition)
+Description: pass a lambda function as a template comparator into the list.sort method, using if statements to decide which comparator to run for the sorting algorithm based on user choice
+Return Value: void
+*/
 template <typename T>
-void Sort(property_controller<T>& list, char choice) { //can sort by market price, or by square feet
-
+void Sort(property_controller<T>& list, char choice) { 
 	try {
 		if (choice == 'p') {
 			list.sort([](const T& a, const T& b) {
@@ -82,22 +88,21 @@ void Sort(property_controller<T>& list, char choice) { //can sort by market pric
 			cout << "Sorted by Square Footage." << endl;
 		}
 		else {
-			throw invalid_argument("Wrong charachter! (p - price sort, s - square footage sort)");
+			throw invalid_argument("Wrong character! (p - price sort, s - square footage sort)");
 		}
 
 	}
 	catch (const exception& e) {
 		cout << "Sort Error: " << e.what() << endl;
 	}
-	//call sort in here with lambda function call as the parameter
-
-	//lambda function call is ([](const property& a, const property& b) { return a.get_(choice)() < b.get_(choice)() });
-	// 
-	// 																//make sure that the correct getter is used according to choice
-	//alternatively replace choice with and enum and do switch case statments, thats way cooler 
 
 }
-
+/*
+Overview: Deletes property by user search query
+Parameters: templated list, search query, search type
+Description: pass a lambda function as a template search condition into the list.delete method, and pass search query into the lambda scope, evaluate if the search query = the property attribute, which is defined by user choice
+Return Value: void
+*/
 template <typename T>
 void Delete_property(property_controller<T>& list, string del, char choice) { // delete element by address, owner name, owner id, or email
 
@@ -119,22 +124,18 @@ void Delete_property(property_controller<T>& list, string del, char choice) { //
 				return p->get_owner().get_email() == del; });
 		}
 		else {
-			throw invalid_argument("Wrong charachter!(Try n - name search, i - tax id search or e - email search");
+			throw invalid_argument("Wrong character!(Try n - name search, i - tax id search or e - email search");
 		}
 	}
 	catch (const exception& e) {
 		cout << "Remove Error: " << e.what() << endl;
-	}														//call delete in here with lambda function call as the paramete
-}																//lmabda function call is ([del](property& p){ return del==p.get_(choice)()});
-
-																// make sure that the correct getter is used according to choice
-
-																//alternatively replace choice with and enum and do switch case statments, thats way cooler 
+	}														
+}																
 
 
 
 
 
-//Honestly after these we 
+
 
 #endif 
