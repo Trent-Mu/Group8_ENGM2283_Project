@@ -42,46 +42,6 @@ void date::date_display() const {
 	}
 }
 
-/**************************************************************
-Method implementation for composition class owner
-Helper function for the isValidEmail function
-**************************************************************/
-
-static bool is_char(char c) {
-	return((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
-
-/**************************************************************
-Method implementation for composition class owner
-This function checks if teh email of an owner is valid.
-It does so by checking if the email is composed of only letters.
-Additionally, the function chechks if the email contains @ and a dot.
-It returns true if the email is written in all letters and has '@' and '.' symbols.
-**************************************************************/
-
-bool owner::isValidEmail() const {
-	if (!is_char(email[0])) return false;
-	int At = -1;
-	int dot = -1;
-
-
-	for (int i = 0; i < email.length(); i++) {
-		if (email[i] == '@') {
-			At = i;
-		}
-		else if (email[i] == '.'){
-			dot = i;
-		}
-	}
-	if (At == -1 || dot == -1) {
-		return false;
-	}
-	if (At > dot) {
-		return false;
-	}
-	return !(dot >= (email.length() - 1));
-}
-
 /**********************************************
 Method implementation for composition class owner
 This function prints all the owner details to the screen.

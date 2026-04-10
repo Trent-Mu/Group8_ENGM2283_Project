@@ -130,7 +130,45 @@ void Delete_property(property_controller<T>& list, string del, char choice) { //
 	catch (const exception& e) {
 		cout << "Remove Error: " << e.what() << endl;
 	}														
-}																
+}				
+
+
+static bool is_char(char c) {
+	return((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+
+static bool is_char_string(string str) {
+
+
+	 for (int i = 0; i < str.length(); i++) {
+		 if (!is_char(str[i]) && str[i] != ' ') return false;
+	 }
+
+	 return true;
+}
+bool is_email(string email) {
+	if (!is_char(email[0])) return false;
+	int At = -1;
+	int dot = -1;
+
+
+	for (int i = 0; i < email.length(); i++) {
+		if (email[i] == '@') {
+			At = i;
+		}
+		else if (email[i] == '.') {
+			dot = i;
+		}
+	}
+	if (At == -1 || dot == -1) {
+		return false;
+	}
+	if (At > dot) {
+		return false;
+	}
+	return !(dot >= (email.length() - 1));
+}
+
 
 
 

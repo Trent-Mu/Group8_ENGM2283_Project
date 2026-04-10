@@ -2,6 +2,7 @@
 #include "Property_Registry_Class.h"
 #include "Helper_Functions.h"
 
+
 int main(void) {
 
 	char choice;
@@ -32,40 +33,109 @@ int main(void) {
 				string name, email, address, business;
 				int taxid, bought, built, bedc;
 				float sqrfeet, marketv;
+				name = email = address = business = taxid = bought = built = bedc = sqrfeet = marketv = NULL;
 				cout << "Enter the type of property (commercial = c, residential = r) (x to quit): ";
 				cin >> choice;
 				choice = (char)tolower(choice);
-				cout << endl;
+				if ((choice != 'c') && (choice != 'r')&&(choice!='x')) {
+					cout << "Pick valid property type: " << endl;
+					continue;
+				}
 				if (choice == 'x') break;
-
-				cout << "Enter name: "; cin >> name;
-				cout << "Enter tax ID: "; cin >> taxid;
-				cout << "Enter email: "; cin >> email;
-				cout << "Enter year bought: "; cin >> bought;
-				cout << "Enter year built: "; cin >> built;
+				cout << endl;
+				
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				
+				while (true) {
+					cout << "Enter name: ";
+					getline(cin, name);
+					if (is_char_string(name)) {
+						break;
+					}
+					else {
+						cout << "invalid name." << endl;
+					}
+				}
+				cout << endl;
+				
+				cout << "Enter tax ID: ";
+				while (!(cin >> taxid)) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid input.Enter a number : ";
+				}
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				while (true) {
+					cout << "Enter email: ";
+					getline(cin, email);
+					if (is_email(email)) {
+						break;
+					}
+					else {
+						cout << "Invalid email. " << endl;
+					}
+				}
+				cout << "Enter year bought: ";
+				while (!(cin >> bought)) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid input. Enter a number: ";
+				}
+				cout << "Enter year built: "; 
+				while (!(cin >> built)) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid input. Enter a number: ";
+				}
+				
 				cout << "Enter address: ";
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				getline(cin, address);
-				cout << "Enter square feet: "; cin >> sqrfeet;
-				cout << "Enter market value: "; cin >> marketv;
+
+				cout << "Enter square feet: ";
+				while (!(cin >> sqrfeet)) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid input. Enter a number: ";
+				}
+				cout << "Enter market value: ";
+				while (!(cin >> marketv)) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid input. Enter a number: ";
+				}
 
 
 
 				if (choice == 'c') {
-					cout << "Enter business type: ";
+					
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					getline(cin, business);
+					while (true) {
+						cout << "Enter business type: ";
+						getline(cin, business);
+						if (is_char_string(business)) {
+							break;
+						}
+						else {
+							cout << "Invalid business type." << endl;
+						}
+					}
 					commercial* c = new commercial(name, taxid, email, bought, built, address, sqrfeet, marketv, business);
 					list.store(c);
 					cout << endl;
 				}
-				if (choice == 'r') {
+				else if (choice == 'r') {
 					cout << "Enter the number of bedrooms: ";
-					cin >> bedc;
+					while (!(cin >> bedc)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "Invalid input. Enter a number: ";
+					}
 					residential* r = new residential(name, taxid, email, bought, built, address, sqrfeet, marketv, bedc);
 					list.store(r);
 					cout << endl;
 				}
+				
 			}
 		}
 		//retrieve property by search condition, then print said property to screen
@@ -98,7 +168,11 @@ int main(void) {
 				else if (choice == 'i') {
 					cout << "Enter owner id to search by: ";
 					int id;
-					cin >> id;
+					while (!(cin >> id)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "Invalid input. Enter a number:";
+					}
 					Retrieve(list, to_string(id), choice);
 				}
 				else if (choice == 'e') {
@@ -145,30 +219,26 @@ int main(void) {
 				}
 				cout << "Delete: address (A), owner name (N) or email (E)";
 				cin >> choice;
-
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				choice = (char)tolower(choice);
 				string del;
 				if (choice == 'a') {
 					cout << "Which address would you like to delete?";
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
 				}
 				else if (choice == 'n') {
 					cout << "Which owner name would you like to delete?";
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
 				}
 				else if (choice == 'i') {
 					cout << "Which owner ID would you like to delete?";
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
 				}
 				else if (choice == 'e') {
 					cout << "Which email would you like to delete?";
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					getline(cin, del);
 					Delete_property(list, del, choice);
 				}
@@ -203,7 +273,7 @@ int main(void) {
 		else if (choice == 'c') {
 			if (list.empty()) {
 				cout << "Database already empty" << endl << "returning to main menu: " << endl;
-				display_menu;
+				display_menu();
 				continue;
 			}
 			list.clear();
