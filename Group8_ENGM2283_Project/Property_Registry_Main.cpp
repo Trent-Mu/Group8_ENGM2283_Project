@@ -33,7 +33,6 @@ int main(void) {
 				string name, email, address, business;
 				int taxid, bought, built, bedc;
 				float sqrfeet, marketv;
-				name = email = address = business = taxid = bought = built = bedc = sqrfeet = marketv = NULL;
 				cout << "Enter the type of property (commercial = c, residential = r) (x to quit): ";
 				cin >> choice;
 				choice = (char)tolower(choice);

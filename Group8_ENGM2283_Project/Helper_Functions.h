@@ -139,7 +139,7 @@ static bool is_char(char c) {
 
 static bool is_char_string(string str) {
 
-
+	if (str.empty()) return false;
 	 for (int i = 0; i < str.length(); i++) {
 		 if (!is_char(str[i]) && str[i] != ' ') return false;
 	 }
@@ -147,6 +147,7 @@ static bool is_char_string(string str) {
 	 return true;
 }
 bool is_email(string email) {
+	if (email.empty()) return false;
 	if (!is_char(email[0])) return false;
 	int At = -1;
 	int dot = -1;
